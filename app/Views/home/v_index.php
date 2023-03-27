@@ -1,6 +1,6 @@
 <main>
     <!--? Hero Area Start-->
-    <div class="slider-area hero-bg1 hero-overly" style="background-image: url(<?= base_url() ?>/asset/img/gambar-atlet.jpg) !important; background-size: auto;">
+    <div class="slider-area hero-bg1 hero-overly" style="background-image: url(<?= base_url() ?>/asset/img/gambar-atlet.jpg) !important; background-size: cover;">
         <div class="single-slider hero-overly  slider-height1 d-flex align-items-center">
             <div class="container">
                 <div class="row justify-content-center">
@@ -41,12 +41,6 @@
                                 <a href="#"><i class="ti-search"></i> Cari</a>
                             </div>
                         </form>
-                        <!-- hero category1 img -->
-                        <div class="category-img text-center">
-                            <a href="listing.html"> <img src="<?= base_url() ?>/template/frontend/assets/img/gallery/hero_category1.png" alt=""></a>
-                            <a href="listing.html"> <img src="<?= base_url() ?>/template/frontend/assets/img/gallery/hero_category2.png" alt=""></a>
-                            <a href="listing.html"> <img src="<?= base_url() ?>/template/frontend/assets/img/gallery/hero_category3.png" alt=""></a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -54,6 +48,19 @@
     </div>
     <!--Hero Area End-->
     <!--? Popular Locations Start 01-->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px;">
+                <img data-aos="fade-right" src="<?= base_url() ?>/asset/img/1.png" style=" width: 10%; max-width: 60%; min-width: 40%;" alt="">
+                <span style="margin-left: 12vw;" data-aos="fade-left">
+                    <h1 style="font-size: 2vw;">PROMO PENGGUNA BARU!</h1>
+                    <h1 class="mt-3" style="font-weight: 100 !important; font-size: 5vw; font-family: fantasy;">DISKON 20%</h1>
+                    <p class="text-muted pt-3" style="font-size: 2vmin;"><i>S&K BERLAKU</i></p>
+                </span>
+            </div>
+        </div>
+    </div>
+
     <div class="popular-location border-bottom section-padding40">
         <div class="container">
             <div class="row">
@@ -511,6 +518,15 @@
                 </div>
             </div>
         </div>
+        <section class="splide" aria-label="Splide Basic HTML Example">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">Slide 01</li>
+                    <li class="splide__slide">Slide 02</li>
+                    <li class="splide__slide">Slide 03</li>
+                </ul>
+            </div>
+        </section>
     </section>
     <!-- Want To work End -->
     <!--? Want To work 01-->

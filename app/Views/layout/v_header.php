@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>DirectoryListing</title>
+    <title><?= $title ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>/asset/img/logo.ico">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/bootstrap.min.css">
@@ -25,6 +25,12 @@
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/slick.css">
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/nice-select.css">
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/style.css">
+
+    <!-- aos -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+
     <!-- hijau primary background-color: #08b4ac !important; -->
     <!-- hijau btn #07847e; -->
     <!-- hijau a hover  #07695d-->

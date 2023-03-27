@@ -69,8 +69,24 @@
 <script src="<?= base_url() ?>template/frontend/assets/js/plugins.js"></script>
 <script src="<?= base_url() ?>template/frontend/assets/js/main.js"></script>
 
+<!-- aos -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    AOS.init();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
 
+<script>
+    new Splide('.splide').mount();
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var splide = new Splide('.splide');
+        splide.mount();
+    });
+</script>
 </body>
 
 </html>
