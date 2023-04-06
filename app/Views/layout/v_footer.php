@@ -1,5 +1,5 @@
 <footer>
-    <div class="footer-wrapper pt-30">
+    <div class="footer-wrapper">
         <!-- footer-bottom -->
         <div class="footer-bottom-area">
             <div class="container">
@@ -74,18 +74,6 @@
 
 <script>
     AOS.init();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-
-
-<script>
-    new Splide('.splide').mount();
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var splide = new Splide('.splide');
-        splide.mount();
-    });
 </script>
 </body>
 

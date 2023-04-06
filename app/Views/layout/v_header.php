@@ -29,12 +29,50 @@
     <!-- aos -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
-
     <!-- hijau primary background-color: #08b4ac !important; -->
     <!-- hijau btn #07847e; -->
     <!-- hijau a hover  #07695d-->
 
+    <!-- sweet alerts -->
+    <script src="<?= base_url() ?>/asset/js/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<?= base_url() ?>/asset/css/sweetalert2.min.css">
+
+    <style>
+        .swal2-container .swal2-popup .nice-select {
+            display: none;
+        }
+
+        @media (min-width: 991px) {
+            #login {
+                display: none !important;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
+
+    <?php if (session()->getFlashdata('login')) { ?>
+        <script>
+            // alerttt();
+            // alert('login berhasil')
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: '<?= session()->getFlashdata('login') ?>'
+            })
+            // Swal.fire('Any fool can use a computer')
+        </script>
+    <?php } ?>

@@ -21,6 +21,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'filterpenyewa' => \App\Filters\FilterPenyewa::class,
     ];
 
     /**
@@ -29,14 +30,16 @@ class Filters extends BaseConfig
      */
     public array $globals = [
         'before' => [
-            // 'honeypot',
-            // 'csrf',
-            // 'invalidchars',
+            'filterpenyewa' => ['except' => [
+                '/',
+                'login',
+                'cek_login',
+            ]],
         ],
         'after' => [
-            'toolbar',
-            // 'honeypot',
-            // 'secureheaders',
+            'filterpenyewa' => ['except' => [
+                '/',
+            ]],
         ],
     ];
 
