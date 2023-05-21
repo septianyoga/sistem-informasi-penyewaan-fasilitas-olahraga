@@ -6,7 +6,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
 
-class FilterPenyewa implements FilterInterface
+class FilterOwner implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
@@ -20,8 +20,11 @@ class FilterPenyewa implements FilterInterface
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
         // Do something here
-        if (session()->get('role') == 'penyewa') {
+        if (session()->get('role') == 'Owner') {
             return redirect()->to(base_url('/'));
         }
+        // if (session()->get('role') == 'Admin') {
+        //     return redirect()->to(base_url('/admin'));
+        // }
     }
 }

@@ -12253,7 +12253,7 @@ a.text-dark:hover {
     top: 0;
     width: 260px;
     height: 100%;
-    background: #0c2556;
+    background: #08b4ac;
     transition: all .6s ease-in-out;
     -ms-box-shadow: 0 0 30px rgba(12, 37, 86, .05);
     -o-box-shadow: 0 0 30px rgba(12, 37, 86, .05);
@@ -21991,8 +21991,8 @@ code {
     width: 35px;
     height: 30px;
     border-radius: 5px 0 0 5px;
-    background-color: #0c2556;
-    border-color: #0c2556;
+    background-color: #08b4ac;
+    border-color: #08b4ac;
     z-index: 0
 }
 
@@ -22002,7 +22002,7 @@ code {
     top: 0;
     left: 0;
     background-color: #fff;
-    border-color: #0c2556;
+    border-color: #08b4ac;
     border-radius: 5px
 }
 
@@ -22017,7 +22017,7 @@ code {
 }
 
 .change-mode .custom-switch.custom-switch-icon label.custom-control-label .switch-icon-right {
-    color: #0c2556;
+    color: #08b4ac;
     right: -23px;
     top: 3px
 }

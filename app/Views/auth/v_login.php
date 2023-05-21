@@ -4,7 +4,6 @@
         </div>
     </div> -->
 <!-- loader END -->
-
 <div class="wrapper">
     <section class="login-content">
         <div class="container h-100">
@@ -51,10 +50,10 @@
                             </div>
                             <button type="submit" class="btn btn-primary btn-block mt-2">Log In</button>
                             <div class="col-lg-12 mt-3">
-                                <p class="mb-0 text-center">Don't have an account? <a class="hijau" href="/register">Sign Up</a></p>
+                                <p class="mb-0 text-center">Don't have an account? <a class="hijau" href="<?= base_url('register') ?>">Sign Up</a></p>
                             </div>
                             <?= form_close(); ?>
-                            <p class="line-around text-secondary mb-0 mt-3 hijau"><span class="line-around-1"><a class="hijau" href="/">Back to Home</a></span></p>
+                            <p class="line-around text-secondary mb-0 mt-3 hijau"><span class="line-around-1"><a class="hijau" href="<?= base_url('/') ?>">Back to Home</a></span></p>
                         </div>
                     </div>
                 </div>

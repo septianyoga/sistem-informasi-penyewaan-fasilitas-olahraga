@@ -30,10 +30,38 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/pesanan', 'Home::index');
+
+$routes->get('/daftar', 'Fasilitas::daftarOwner');
+$routes->get('/daftarFasilitas', 'Fasilitas::daftarFasilitas');
+$routes->post('/addFasilitas', 'Fasilitas::addFasilitas');
+
 $routes->get('/login', 'Auth::index');
 $routes->get('/logout', 'Auth::logout');
 $routes->get('/register', 'Auth::register');
 $routes->post('/cek_login', 'Auth::cekLogin');
+$routes->post('/verifikasi', 'Auth::add');
+$routes->post('/add', 'Auth::insertPenyewa');
+
+$routes->get('/admin', 'Admin::index');
+$routes->get('/admin/owner', 'Admin::dataOwner');
+$routes->get('/admin/owner/(:num)', 'Admin::deleteOwner/$1');
+$routes->get('/admin/penyewa', 'Admin::dataPenyewa');
+$routes->get('/admin/verifOwner', 'Admin::verifOwner');
+$routes->get('/admin/verifOwner/(:num)', 'Admin::verified/$1');
+$routes->get('/admin/verifFasilitas', 'Admin::verifFasilitas');
+$routes->get('/admin/verifFasilitas/(:num)', 'Admin::detailFasilitas/$1');
+$routes->get('/admin/verifFasilitas/verif/(:num)', 'Admin::fasilitasVerified/$1');
+$routes->get('/admin/fasilitas', 'Admin::showFasilitas');
+
+$routes->get('/owner', 'Owner::index');
+$routes->get('/owner/fasilitas', 'Owner::showFasilitas');
+$routes->get('/owner/fasilitas/(:num)', 'Owner::deleteFasilitas/$1');
+$routes->get('/owner/fasilitas/edit/(:num)', 'Owner::editFasilitas/$1');
+$routes->post('/owner/fasilitas/edit', 'Owner::prosesEditFasilitas');
+$routes->post('/insertOwner', 'Owner::daftar');
+$routes->post('/fasilitasTambah', 'Owner::tambahFasilitas');
+
 
 
 /*

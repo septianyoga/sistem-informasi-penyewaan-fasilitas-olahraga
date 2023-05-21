@@ -19,38 +19,49 @@
                             <div class="mb-5 mt-4">
                                 <p class="line-around text-secondary mb-0 hijau"><span class="line-around-1">register your account to continue</span></p>
                             </div>
-                            <form>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label class="text-secondary hijau">Nama</label>
-                                            <input class="form-control" type="email" placeholder="Enter Nama">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label class="text-secondary hijau">Username</label>
-                                            <input class="form-control" type="email" placeholder="Enter Username">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label class="text-secondary hijau">Email</label>
-                                            <input class="form-control" type="email" placeholder="Enter Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 mt-2">
-                                        <div class="form-group">
-                                            <label class="text-secondary hijau">Password</label>
-                                            <input class="form-control" type="password" placeholder="Enter Password">
-                                        </div>
+                            <?php
+                            $errors = session()->getFlashdata('errors');
+                            if (!empty($errors)) { ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        <?php foreach ($errors as $key => $value) { ?>
+                                            <li><?= esc($value); ?></li>
+                                        <?php } ?>
+                                    </ul>
+                                </div>
+                            <?php  } ?>
+                            <?= form_open('verifikasi'); ?>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="text-secondary hijau">Nama</label>
+                                        <input class="form-control" name="nama" type="text" placeholder="Enter Nama">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block mt-2">Create Account</button>
-                                <div class="col-lg-12 mt-3">
-                                    <p class="mb-0 text-center">Do you have an account? <a href="/login" class="hijau">Sign In</a></p>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="text-secondary hijau">Username</label>
+                                        <input class="form-control" name="username" type="text" placeholder="Enter Username">
+                                    </div>
                                 </div>
-                            </form>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="text-secondary hijau">Email</label>
+                                        <input class="form-control" name="email" type="email" placeholder="Enter Email">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mt-2">
+                                    <div class="form-group">
+                                        <label class="text-secondary hijau">Password</label>
+                                        <input class="form-control" name="password" type="password" placeholder="Enter Password">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block mt-2">Create Account</button>
+                            <div class="col-lg-12 mt-3">
+                                <p class="mb-0 text-center">Do you have an account? <a href="<?= base_url('login') ?>" class="hijau">Sign In</a></p>
+                            </div>
+                            <?= form_close(); ?>
                         </div>
                     </div>
                 </div>

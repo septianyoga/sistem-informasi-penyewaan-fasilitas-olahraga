@@ -21,7 +21,9 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'filterpenyewa' => \App\Filters\FilterPenyewa::class,
+        'filteruser' => \App\Filters\FilterUser::class,
+        'filterowner' => \App\Filters\FilterOwner::class,
+        'filteradmin' => \App\Filters\FilterAdmin::class,
     ];
 
     /**
@@ -30,16 +32,49 @@ class Filters extends BaseConfig
      */
     public array $globals = [
         'before' => [
-            'filterpenyewa' => ['except' => [
-                '/',
-                'login',
-                'cek_login',
-            ]],
+            'filteruser' => [
+                'except' => [
+                    '/',
+                    '/login',
+                    '/cek_login',
+                    '/register',
+                    '/verifikasi',
+                    '/daftarFasilitas',
+                    '/add',
+                ]
+            ],
+
         ],
         'after' => [
-            'filterpenyewa' => ['except' => [
-                '/',
-            ]],
+            'filteruser' => [
+                'except' => [
+                    '/',
+                    '/pesanan',
+                    '/daftarFasilitas',
+                    '/daftar',
+                    '/insertOwner',
+                    '/addFasilitas',
+                ],
+            ],
+            'filterowner' => [
+                'except' => [
+                    '/',
+                    '/pesanan',
+                    '/owner',
+                    '/owner/*',
+                    '/daftarFasilitas',
+                    '/daftar',
+                    '/insertOwner',
+                    '/addFasilitas',
+                    '/fasilitasTambah',
+                ],
+            ],
+            'filteradmin' => [
+                'except' => [
+                    '/admin', '/admin/*',
+                    'daftarFasilitas',
+                ],
+            ],
         ],
     ];
 

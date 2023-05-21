@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="<?= base_url() ?>/template/backend/html/assets/css/backend-plugin.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/template/backend/html/assets/css/backend.css?v=1.0.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
         .hijau {
             color: #08b4ac !important;
@@ -46,6 +47,17 @@
             })
         </script>
     <?php }
+    if (session()->getFlashdata('regist')) { ?>
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '<?= session()->getFlashdata('regist') ?>',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    <?php }
     if (session()->getFlashdata('logout')) { ?>
         <script>
             const Toast = Swal.mixin({
@@ -64,5 +76,28 @@
                 icon: 'success',
                 title: 'Logout Berhasil!'
             })
+        </script>
+    <?php } ?>
+    <?php if (session()->getFlashdata('pesan')) { ?>
+        <script>
+            // alerttt();
+            // alert('login berhasil')
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'warning',
+                title: '<?= session()->getFlashdata('pesan') ?>'
+            })
+            // Swal.fire('Any fool can use a computer')
         </script>
     <?php } ?>

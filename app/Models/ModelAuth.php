@@ -7,59 +7,40 @@ use CodeIgniter\Model;
 class ModelAuth extends Model
 {
 
-    public function cekData($username_email, $password)
+    public function cekDataPenyewa($username_email, $password)
     {
-        $cek = $this->db->table('user')->where([
+        $cek = $this->db->table('penyewa')->where([
             'username' => $username_email,
             'password' => $password,
         ])->get()->getRowArray();
         if ($cek) {
             return $cek;
         } else {
-            return $this->db->table('user')->where([
+            return $this->db->table('penyewa')->where([
                 'email' => $username_email,
                 'password' => $password,
             ])->get()->getRowArray();
         }
     }
 
-    public function data_user($username, $password)
+    public function cekDataAdmin($username_email, $password)
     {
-        return $this->db->table('user')->where([
-            'username' => $username,
+        $cek = $this->db->table('admin')->where([
+            'username' => $username_email,
             'password' => $password,
         ])->get()->getRowArray();
+        if ($cek) {
+            return $cek;
+        } else {
+            return $this->db->table('admin')->where([
+                'email' => $username_email,
+                'password' => $password,
+            ])->get()->getRowArray();
+        }
     }
 
-    public function login_admin($username, $password)
+    public function insertToPenyewa($data)
     {
-        return $this->db->table('user')->where([
-            'username' => $username,
-            'password' => $password,
-        ])->get()->getRowArray();
-    }
-
-    public function login_sekretaris($username, $password)
-    {
-        return $this->db->table('user')->where([
-            'username' => $username,
-            'password' => $password,
-        ])->get()->getRowArray();
-    }
-
-    public function login_bendahara($username, $password)
-    {
-        return $this->db->table('user')->where([
-            'username' => $username,
-            'password' => $password,
-        ])->get()->getRowArray();
-    }
-
-    public function login_department($username, $password)
-    {
-        return $this->db->table('user')->where([
-            'username' => $username,
-            'password' => $password,
-        ])->get()->getRowArray();
+        $this->db->table('penyewa')->insert($data);
     }
 }
