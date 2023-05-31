@@ -36,8 +36,8 @@
                                             <td><?= $row['email'] ?></td>
                                             <td class="text-center"><img width="75px" src="<?= ($row['foto'] == null) ? base_url('asset/img/user.png') : base_url('foto_profil/' . $row['foto']) ?> " alt=""></td>
                                             <td class="text-center">
-                                                <a href="<?= base_url() ?>" class="btn btn-primary btn-sm">Detail</a>
-                                                <button class="btn btn-sm btn-danger">Hapus</button>
+                                                <a href="#" class="btn btn-primary btn-sm">Detail</a>
+                                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete<?= $row['id_penyewa'] ?>">Hapus</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -50,3 +50,27 @@
         </div>
     </div>
 </div>
+
+<!-- modal hapus -->
+<?php foreach ($data as $row) { ?>
+    <div class="modal fade bd-example-modal-lg" id="delete<?= $row['id_penyewa'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hapus Penyewa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Yakin ingin menghapus data penyewa <b><?= $row['nama_penyewa'] ?>?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="<?= base_url('admin/penyewa/' . $row['id_penyewa']) ?>" class="btn btn-danger">Hapus</a>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+<?php } ?>

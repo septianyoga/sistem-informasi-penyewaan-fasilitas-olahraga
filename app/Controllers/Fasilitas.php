@@ -4,17 +4,20 @@ namespace App\Controllers;
 
 use App\Models\ModelFasilitas;
 use App\Models\ModelHome;
+use App\Models\ModelPesanan;
 
 class Fasilitas extends BaseController
 {
 
-    private $ModelFasilitas, $ModelHome;
+    private $ModelFasilitas, $ModelHome, $ModelPesanan;
 
     public function __construct()
     {
         helper('form');
         $this->ModelFasilitas = new ModelFasilitas();
         $this->ModelHome = new ModelHome();
+        $this->ModelPesanan = new ModelPesanan();
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     public function index()
@@ -162,6 +165,13 @@ class Fasilitas extends BaseController
                     'id_fasilitas' => $getLastIdFasilitas,
                     'foto' => $nama,
                 ];
+                $dataupdate = [
+                    'id_fasilitas' => $getLastIdFasilitas,
+                    'thumnail' => $nama,
+                ];
+                if ($key == 0) {
+                    $this->ModelFasilitas->updateFotoFasilitas($dataupdate);
+                }
                 $this->ModelFasilitas->insertFoto($datafoto);
                 $img->move(ROOTPATH . 'public/foto_fasilitas', $nama);
             }
@@ -174,5 +184,67 @@ class Fasilitas extends BaseController
             session()->setFlashdata('errors', \config\Services::validation()->getErrors());
             return redirect()->to(base_url('daftarFasilitas'))->withInput();
         }
+    }
+
+    public function detail($id)
+    {
+        $data = [
+            'title'         => 'Detail',
+            'penyewa'       => $this->ModelHome->getPenyewa(session()->get('id')),
+            'fasilitas'     => $this->ModelFasilitas->getFasilitasById($id),
+            'foto'          => $this->ModelFasilitas->getFoto($id),
+            'isi'           => 'home/detail/v_index'
+        ];
+        return view('layout/v_wrapper', $data);
+    }
+
+    public function sewa($id_fasilitas)
+    {
+        $fasilitas = $this->ModelFasilitas->getFasilitasById($id_fasilitas);
+        if ($fasilitas['hargaper'] == 'Jam') {
+            $data = [
+                'title'         => 'Sewa',
+                'penyewa'       => $this->ModelHome->getPenyewa(session()->get('id')),
+                'fasilitas'     => $this->ModelFasilitas->getFasilitasById($id_fasilitas),
+                'foto'          => $this->ModelFasilitas->getFoto($id_fasilitas),
+                'pesanan'       => $this->ModelPesanan->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')->where('hargaper', 'Jam')->findAll(),
+                'isi'           => 'home/detail/v_pesan_perjam'
+            ];
+        } else {
+            $data = [
+                'title'         => 'Sewa',
+                'penyewa'       => $this->ModelHome->getPenyewa(session()->get('id')),
+                'fasilitas'     => $this->ModelFasilitas->getFasilitasById($id_fasilitas),
+                'foto'          => $this->ModelFasilitas->getFoto($id_fasilitas),
+                'pesanan'       => $this->ModelPesanan->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')->where('hargaper', 'Hari')->findAll(),
+                'isi'           => 'home/detail/v_pesan_perhari'
+            ];
+        }
+        return view('layout/v_wrapper', $data);
+    }
+
+    public function booking()
+    {
+        $data = [
+            'id_penyewa'    => $this->request->getPost('id_penyewa'),
+            'id_fasilitas'  => $this->request->getPost('id_fasilitas'),
+            'tanggal'       => $this->request->getPost('tanggal'),
+            'nominal'       => $this->request->getPost('nominal'),
+        ];
+        $this->ModelPesanan->insert($data);
+        $data_terakhir = $this->ModelPesanan->orderBy('id_pesanan', 'DESC')->first();
+        echo $data_terakhir['id_pesanan'];
+    }
+
+    public function metode_p($id)
+    {
+        $data = [
+            'title'         => 'Metode Pembayaran',
+            'penyewa'       => $this->ModelHome->getPenyewa(session()->get('id')),
+            'fasilitas'     => $this->ModelFasilitas->getFasilitasById($id),
+            'foto'          => $this->ModelFasilitas->getFoto($id),
+            'isi'           => 'home/metode_pembayaran/v_metode'
+        ];
+        return view('layout/v_wrapper', $data);
     }
 }

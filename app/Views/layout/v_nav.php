@@ -13,7 +13,7 @@
 <header>
     <!-- Header Start -->
     <div class="header-area header-transparent">
-        <div class="main-header header-sticky">
+        <div class="main-header header-sticky <?= $title != 'Home' ? 'bg-hijau' : '' ?>">
             <div class="container-fluid">
                 <div class="menu-wrapper d-flex align-items-center justify-content-between">
                     <!-- Logo -->

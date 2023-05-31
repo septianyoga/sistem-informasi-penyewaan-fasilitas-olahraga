@@ -44,16 +44,6 @@ class Admin extends BaseController
         return view('layout/v_wrapper_admin', $data);
     }
 
-    public function verifOwner()
-    {
-        $data = [
-            'title' => 'Verifikasi Owner',
-            'data'  => $this->ModelAdmin->getAllOwner(),
-            'isi'   => 'admin/v_verifOwner'
-        ];
-        return view('layout/v_wrapper_admin', $data);
-    }
-
     public function verified($id_owner)
     {
         $data = [
@@ -63,18 +53,7 @@ class Admin extends BaseController
 
         $this->ModelAdmin->verif($data);
         session()->setFlashdata('pesan', 'Verifikasi Berhasil!');
-        return redirect()->to(base_url('admin/verifOwner'));
-    }
-
-    public function verifFasilitas()
-    {
-        $data = [
-            'title' => 'Verifikasi Fasilitas',
-            'data'  => $this->ModelAdmin->getAllFasilitasJoin(),
-            'isi'   => 'admin/v_verifFasilitas'
-        ];
-        // dd($this->ModelAdmin->getAllFasilitasJoin());
-        return view('layout/v_wrapper_admin', $data);
+        return redirect()->to(base_url('admin/owner'));
     }
 
     public function detailFasilitas($id_fasilitas)
@@ -98,7 +77,7 @@ class Admin extends BaseController
         ];
         $this->ModelAdmin->ubahStatusFasilitas($data);
         session()->setFlashdata('pesan', 'Validasi Berhasil!');
-        return redirect()->to(base_url('admin/verifFasilitas'));
+        return redirect()->to(base_url('admin/fasilitas'));
     }
 
     public function showFasilitas()
@@ -106,6 +85,7 @@ class Admin extends BaseController
         $data = [
             'title' => 'Data Fasilitas',
             'data'  => $this->ModelAdmin->getAllFasilitasVerified(),
+            'fasilitas'  => $this->ModelAdmin->getAllFasilitasJoin(),
             'isi'   => 'admin/v_fasilitas'
         ];
         return view('layout/v_wrapper_admin', $data);
@@ -131,5 +111,15 @@ class Admin extends BaseController
         $this->ModelAdmin->delOwner($data);
         session()->setFlashdata('pesan', 'Hapus Berhasil!');
         return redirect()->to(base_url('admin/owner'));
+    }
+
+    public function hapusPenyewa($id)
+    {
+        $data = [
+            'id_penyewa' => $id
+        ];
+        $this->ModelAdmin->db->table('penyewa')->where('id_penyewa', $id)->delete($data);
+        session()->setFlashdata('pesan', 'Hapus Berhasil!');
+        return redirect()->to(base_url('admin/penyewa'));
     }
 }

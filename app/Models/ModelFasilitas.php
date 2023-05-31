@@ -55,4 +55,16 @@ class ModelFasilitas extends Model
     {
         return $this->db->table('foto')->where('id_fasilitas', $id_fasilitas)->get()->getResultArray();
     }
+
+    public function updateFotoFasilitas($data)
+    {
+        $this->db->table('fasilitas')->where('id_fasilitas', $data['id_fasilitas'])->update($data);
+    }
+
+    public function getFasilitasById($id_fasilitas)
+    {
+        return $this->db->table('fasilitas')
+            ->join('kategori', 'kategori.id_kategori = fasilitas.id_kategori')
+            ->where('id_fasilitas', $id_fasilitas)->get()->getRowArray();
+    }
 }

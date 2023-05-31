@@ -46,9 +46,11 @@ class Auth extends BaseController
             ],
             'password' => [
                 'label' => 'Password',
-                'rules' => 'required',
+                'rules' => 'required|min_length[6]|alpha_numeric',
                 'errors' => [
-                    'required' => '{field} wajib diisi.'
+                    'required' => '{field} wajib diisi.',
+                    'min_length' => '{field} minimal 6 huruf / angka.',
+                    'alpha_numeric' => '{field} tidak boleh berisi karakter.'
                 ],
             ],
         ];
@@ -123,9 +125,11 @@ class Auth extends BaseController
             ],
             'password' => [
                 'label' => 'Password',
-                'rules' => 'required',
+                'rules' => 'required|min_length[6]|alpha_numeric',
                 'errors' => [
-                    'required' => '{field} wajib diisi.'
+                    'required' => '{field} wajib diisi.',
+                    'min_length' => '{field} minimal 6 huruf / angka.',
+                    'alpha_numeric' => '{field} tidak boleh berisi karakter.'
                 ],
             ],
         ];

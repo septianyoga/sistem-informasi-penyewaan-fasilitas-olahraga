@@ -200,6 +200,13 @@ class Owner extends BaseController
                     'id_fasilitas' => $getLastIdFasilitas,
                     'foto' => $nama,
                 ];
+                $dataupdate = [
+                    'id_fasilitas' => $getLastIdFasilitas,
+                    'thumnail' => $nama,
+                ];
+                if ($key == 0) {
+                    $this->ModelFasilitas->updateFotoFasilitas($dataupdate);
+                }
                 $this->ModelFasilitas->insertFoto($datafoto);
                 $img->move(ROOTPATH . 'public/foto_fasilitas', $nama);
             }

@@ -1,3 +1,27 @@
+<section class="">
+    <div class="container">
+        <div class="wants-wrapper w-padding2">
+            <div class="row justify-content-between">
+                <div class="col-xl-8 col-lg-8 col-md-7">
+                    <div class="wantToWork-caption wantToWork-caption2">
+                        <a href="/" class="text-dark">
+                            <img src="<?= base_url() ?>/asset/img/logo-warna.png" width="70vw" alt="" class="mb-20">
+                            <span style="font-weight: 500; font-size: x-large;">SIPFOR</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-5">
+                    <div class="footer-social f-right sm-left">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <footer>
     <div class="footer-wrapper">
         <!-- footer-bottom -->

@@ -8,7 +8,7 @@
                             <h4 class="card-title"><?= $title ?></h4>
                         </div>
                         <div class="header-action">
-                            <a href="<?= base_url('admin/verifFasilitas') ?>" class="btn"><i class="bi bi-arrow-return-left"></i> Kembali</a>
+                            <a href="<?= base_url('admin/fasilitas') ?>" class="btn"><i class="bi bi-arrow-return-left"></i> Kembali</a>
                             <!-- <button class="btn btn-info">Tambah</button> -->
                         </div>
                     </div>

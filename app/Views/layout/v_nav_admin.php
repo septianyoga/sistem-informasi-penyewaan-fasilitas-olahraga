@@ -34,27 +34,17 @@
                     <?php if (session()->get('role') == 'Admin') { ?>
                         <li class="<?= ($title == 'Data Owner') ? 'active' : '' ?> sidebar-layout">
                             <a href="<?= base_url('admin/owner') ?>" class="svg-icon">
-                                <i class="bi bi-people"></i><span class="ml-2">Owner</span>
+                                <i class="bi bi-people"></i><span class="ml-2">Kelola Owner</span>
                             </a>
                         </li>
                         <li class="<?= ($title == 'Data Fasilitas' || $title == 'Detail Fasilitas') ? 'active' : '' ?> sidebar-layout">
                             <a href="<?= base_url('admin/fasilitas') ?>" class="svg-icon">
-                                <i class="bi bi-people"></i><span class="ml-2">Fasilitas</span>
+                                <i class="bi bi-people"></i><span class="ml-2">Kelola Fasilitas</span>
                             </a>
                         </li>
                         <li class="<?= ($title == 'Data Penyewa') ? 'active' : '' ?> sidebar-layout">
                             <a href="<?= base_url('admin/penyewa') ?>" class="svg-icon">
                                 <i class="bi bi-person-lines-fill"></i><span class="ml-2">Penyewa</span>
-                            </a>
-                        </li>
-                        <li class="<?= ($title == 'Verifikasi Owner') ? 'active' : '' ?> sidebar-layout">
-                            <a href="<?= base_url('admin/verifOwner') ?>" class="svg-icon">
-                                <i class="bi bi-person-check-fill"></i><span class="ml-2">Verifikasi Owner</span>
-                            </a>
-                        </li>
-                        <li class="<?= ($title == 'Verifikasi Fasilitas') ? 'active' : '' ?> sidebar-layout">
-                            <a href="<?= base_url('admin/verifFasilitas') ?>" class="svg-icon">
-                                <i class="bi bi-card-checklist"></i><span class="ml-2">Verifikasi Fasilitas</span>
                             </a>
                         </li>
                     <?php } else { ?>
@@ -64,12 +54,12 @@
                             </a>
                         </li>
                         <li class="<?= ($title == 'Data Pesanan') ? 'active' : '' ?> sidebar-layout">
-                            <a href="<?= base_url('owner/fasilitas') ?>" class="svg-icon">
+                            <a href="#" class="svg-icon">
                                 <i class="bi bi-file-text"></i><span class="ml-2">Pesanan</span>
                             </a>
                         </li>
                         <li class="<?= ($title == 'Laporan') ? 'active' : '' ?> sidebar-layout">
-                            <a href="<?= base_url('owner/laporan') ?>" class="svg-icon">
+                            <a href="#" class="svg-icon">
                                 <i class="bi bi-file-earmark"></i><span class="ml-2">Laporan</span>
                             </a>
                         </li>

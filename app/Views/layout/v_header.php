@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title><?= $title ?></title>
+    <title><?= $title ?> | SIPFOR</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/slicknav.css">
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/flaticon.css">
+    <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/hamburgers.min.css">
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/progressbar_barfiller.css">
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/gijgo.css">
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/animate.min.css">
@@ -24,7 +25,8 @@
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/themify-icons.css">
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/slick.css">
     <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/nice-select.css">
-    <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/stylee.css">
+    <link rel="stylesheet" href="<?= base_url('template/frontend/') ?>assets/css/responsive.css">
 
     <!-- aos -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -111,6 +113,18 @@
 
         body {
             overflow-x: hidden !important;
+        }
+
+        .bg-hijau {
+            background-color: #08b4ac !important;
+        }
+
+        h2>b>a:hover {
+            color: #08b4ac;
+        }
+
+        .text-hijau {
+            color: #08b4ac;
         }
     </style>
 

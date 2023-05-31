@@ -41,6 +41,8 @@ class Filters extends BaseConfig
                     '/verifikasi',
                     '/daftarFasilitas',
                     '/add',
+                    '/kategori/*',
+                    '/fasilitas/*',
                 ]
             ],
 
@@ -54,6 +56,10 @@ class Filters extends BaseConfig
                     '/daftar',
                     '/insertOwner',
                     '/addFasilitas',
+                    '/kategori/*',
+                    '/fasilitas/*',
+                    '/sewa/*',
+                    '/metode_pembayaran/*',
                 ],
             ],
             'filterowner' => [
@@ -67,6 +73,10 @@ class Filters extends BaseConfig
                     '/insertOwner',
                     '/addFasilitas',
                     '/fasilitasTambah',
+                    '/kategori/*',
+                    '/fasilitas/*',
+                    '/sewa/*',
+                    '/metode_pembayaran/*',
                 ],
             ],
             'filteradmin' => [

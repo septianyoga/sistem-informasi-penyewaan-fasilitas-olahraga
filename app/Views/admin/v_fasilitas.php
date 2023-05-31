@@ -1,5 +1,27 @@
 <div class="content-page">
     <div class="container-fluid">
+        <h4 class="font-weight-bold">Verifikasi Fasilitas</h4>
+        <div class="row">
+            <div class="d-flex flex-row flex-nowrap overflow-auto" style="width: 100%;">
+                <?php foreach ($fasilitas as $row) {
+                    // if ($row['status'] == null) { 
+                ?>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card card-block">
+                            <div class="card-body">
+                                <h4 class="card-title"><?= $row['nama_fasilitas'] ?></h4>
+                                <p class="card-text">Harga : <?= $row['harga'] ?> / <?= $row['hargaper'] ?> </p>
+                                <p class="card-text">Alamat : <?= $row['keterangan'] ?> </p>
+                                <a href="<?= base_url('admin/verifFasilitas/' . $row['id_fasilitas']) ?>" class="btn btn-sm btn-primary ">Detail</a>
+                                <a href="<?= base_url('admin/verifFasilitas/verif/' . $row['id_fasilitas']) ?>" class="btn btn-success btn-sm">Verifikasi</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php }
+                // } 
+                ?>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">

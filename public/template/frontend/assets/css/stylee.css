@@ -212,7 +212,7 @@ a {
 }
 
 a:hover {
-    color: #fff
+    color: #08b4ac
 }
 
 a:focus,
@@ -397,7 +397,7 @@ hr {
     top: 0;
     width: 101%;
     height: 101%;
-    background: #07847e;
+    background: #07695d;
     z-index: 1;
     border-radius: 5px;
     transition: transform 0.5s;

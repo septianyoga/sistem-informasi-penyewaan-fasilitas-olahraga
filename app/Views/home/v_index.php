@@ -76,7 +76,7 @@
             <div class="directory-active">
                 <!-- Single -->
                 <div class="properties pb-20">
-                    <a href="">
+                    <a href="<?= base_url('kategori/Futsal') ?>">
                         <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; justify-content: space-evenly;">
                             <img src="<?= base_url() ?>/asset/img/2.png" style=" width: 40%; max-width: 70%; min-width: 40%;" alt="">
                             <h1 class="mt-3" style="font-weight: 30px !important; font-size: 2vw; font-family: fantasy;">FUTSAL</h1>
@@ -85,7 +85,7 @@
                 </div>
                 <!-- Single -->
                 <div class="properties pb-20">
-                    <a href="">
+                    <a href="<?= base_url('kategori/Badminton') ?>">
                         <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; width: 100%; justify-content: space-evenly;">
                             <img src="<?= base_url() ?>/asset/img/3.png" style=" width: 46%; max-width: 70%; min-width: 40%;" alt="">
                             <h1 class="mt-3" style="font-weight: 30px !important; font-size: 2vw; font-family: fantasy;">BADMINTON</h1>
@@ -123,30 +123,5 @@
         </div>
     </div>
     <!--? Popular Directory End -->
-    <!--? Want To work 02-->
-    <section class="">
-        <div class="container">
-            <div class="wants-wrapper w-padding2">
-                <div class="row justify-content-between">
-                    <div class="col-xl-8 col-lg-8 col-md-7">
-                        <div class="wantToWork-caption wantToWork-caption2">
-                            <a href="/" class="text-dark">
-                                <img src="<?= base_url() ?>/asset/img/logo-warna.png" width="70vw" alt="" class="mb-20">
-                                <span style="font-weight: 500; font-size: x-large;">SIPFOR</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-5">
-                        <div class="footer-social f-right sm-left">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 </main>

@@ -21,4 +21,16 @@ class ModelHome extends Model
         }
         return null;
     }
+
+    public function getAllFasilitasWithKategori($kategori)
+    {
+        return $this->db->table('fasilitas')
+            ->join('kategori', 'kategori.id_kategori = fasilitas.id_kategori')
+            ->join('owner', 'owner.id_owner = fasilitas.id_owner')
+            ->where([
+                'nama_kategori' => $kategori,
+                'fasilitas.status' => 'Tervalidasi'
+            ])
+            ->get()->getResultArray();
+    }
 }

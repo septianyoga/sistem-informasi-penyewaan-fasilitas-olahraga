@@ -30,6 +30,8 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/kategori/(:any)', 'Kategori::index/$1');
+
 $routes->get('/pesanan', 'Home::index');
 
 $routes->get('/daftar', 'Fasilitas::daftarOwner');
@@ -47,6 +49,7 @@ $routes->get('/admin', 'Admin::index');
 $routes->get('/admin/owner', 'Admin::dataOwner');
 $routes->get('/admin/owner/(:num)', 'Admin::deleteOwner/$1');
 $routes->get('/admin/penyewa', 'Admin::dataPenyewa');
+$routes->get('/admin/penyewa/(:num)', 'Admin::hapusPenyewa/$1');
 $routes->get('/admin/verifOwner', 'Admin::verifOwner');
 $routes->get('/admin/verifOwner/(:num)', 'Admin::verified/$1');
 $routes->get('/admin/verifFasilitas', 'Admin::verifFasilitas');
@@ -62,6 +65,11 @@ $routes->post('/owner/fasilitas/edit', 'Owner::prosesEditFasilitas');
 $routes->post('/insertOwner', 'Owner::daftar');
 $routes->post('/fasilitasTambah', 'Owner::tambahFasilitas');
 
+$routes->get('/fasilitas/(:num)', 'Fasilitas::detail/$1');
+
+$routes->post('/sewa/(:num)', 'Fasilitas::sewa/$1');
+$routes->post('/sewa/booking', 'Fasilitas::booking');
+$routes->get('/metode_pembayaran/(:num)', 'Fasilitas::metode_p/$1');
 
 
 /*
