@@ -3,7 +3,7 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
-    .fc-event-title-container {
+    /* .fc-event-title-container {
         background-color: red !important;
         text-align: center;
     }
@@ -20,7 +20,7 @@
 
     .fc-day-past {
         background-color: azure !important;
-    }
+    } */
 </style>
 <main>
     <!--? Blog Area Start-->
@@ -67,16 +67,63 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'timeGridWeek',
             businessHours: true,
-            events: [{
-                title: 'lsdflksdjf',
-                start: '2023-05-31 07:00:00'
-            }],
+            events: [
+                <?php foreach ($pesanan as $value) { ?> {
+                        title: 'Booked',
+                        start: '<?= strval($value['tanggal']) ?>'
+                    },
+                <?php } ?>
+            ],
             dateClick: function(info) {
                 tgl = info.dateStr;
-                jam = tgl.split('T');
-                jamaja = jam[1].split('+')
+                tgl = tgl.split('T');
+                jamaja = tgl[1].split('+')
+                jambulat = jamaja[0].split(':')
+                jam = tgl[0] + ' ' + jambulat[0] + ':00:00';
+                if ("<?= date('Y-m-d H:i:s') ?>" > jam) {
+                    // alert('<?= date('Y-m-d H:i:s') ?> ' + tgl[0] + ' ' + jamaja[0]);
+                    Swal.fire(
+                        'Opsss...',
+                        'Jam sudah melewati saat ini.',
+                        'warning'
+                    )
+                } else {
+                    Swal.fire({
+                        title: 'Yakin ingin melakukan sewa di tanggal ' + jam + '?',
+                        text: "Anda dapat membatalkan pesanan kapan saja!",
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Tentu!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: '<?= base_url('sewa/booking') ?>',
+                                type: 'POST',
+                                data: {
+                                    id_penyewa: <?= session()->get('id') ?>,
+                                    id_fasilitas: <?= $fasilitas['id_fasilitas'] ?>,
+                                    tanggal: jam,
+                                    nominal: <?= $fasilitas['harga'] ?>
+                                },
+                                success: function(result) {
+                                    // alert(result)
+                                    Swal.fire(
+                                        'Berhasil!',
+                                        'Booking anda telah di buat.',
+                                        'success'
+                                    )
+                                    setTimeout(() => document.location.href = '<?= base_url('/metode_pembayaran/') ?>' + result, 3000);
+                                    // setTimeout(alert('halo'), 5000);
+                                }
+                            })
 
-                alert('clicked ' + jam[0] + jamaja[0]);
+                        }
+                    })
+
+
+                }
             },
 
         });

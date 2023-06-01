@@ -207,7 +207,10 @@ class Fasilitas extends BaseController
                 'penyewa'       => $this->ModelHome->getPenyewa(session()->get('id')),
                 'fasilitas'     => $this->ModelFasilitas->getFasilitasById($id_fasilitas),
                 'foto'          => $this->ModelFasilitas->getFoto($id_fasilitas),
-                'pesanan'       => $this->ModelPesanan->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')->where('hargaper', 'Jam')->findAll(),
+                'pesanan'       => $this->ModelPesanan->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')->where([
+                    'hargaper' => 'Jam',
+                    'pesanan.id_fasilitas' => $id_fasilitas
+                ])->findAll(),
                 'isi'           => 'home/detail/v_pesan_perjam'
             ];
         } else {
@@ -216,10 +219,14 @@ class Fasilitas extends BaseController
                 'penyewa'       => $this->ModelHome->getPenyewa(session()->get('id')),
                 'fasilitas'     => $this->ModelFasilitas->getFasilitasById($id_fasilitas),
                 'foto'          => $this->ModelFasilitas->getFoto($id_fasilitas),
-                'pesanan'       => $this->ModelPesanan->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')->where('hargaper', 'Hari')->findAll(),
+                'pesanan'       => $this->ModelPesanan->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')->where([
+                    'hargaper' => 'Hari',
+                    'pesanan.id_fasilitas' => $id_fasilitas
+                ])->findAll(),
                 'isi'           => 'home/detail/v_pesan_perhari'
             ];
         }
+        // dd($data['pesanan']);
         return view('layout/v_wrapper', $data);
     }
 

@@ -3,6 +3,14 @@
     <section class="blog_area section-padding">
         <div class="container">
             <div class="row">
+                <div class="col-lg-12">
+                    <!-- Section Tittle -->
+                    <div class="section-tittle ">
+                        <h3><b><a href="<?= base_url('kategori/' . $fasilitas['nama_kategori']) ?>"><i class="bi bi-chevron-left"></i> Kembali</a></b></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12 mb-5 mb-lg-0">
                     <div class="blog_left_sidebar">
                         <article class="blog_item">
