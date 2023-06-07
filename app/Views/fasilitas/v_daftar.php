@@ -71,13 +71,52 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="lokasi">Lokasi Koordinat GPS <span class="text-danger">*</span></label>
-                            <input class="form-control valid" name="lokasi" id="lokasi" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukan Koordinat'" placeholder="Masukan Koordinat" value="<?= ($dataOwner != null) ? $dataOwner['lokasi'] :  old('lokasi') ?>" <?= ($dataOwner != null) ? 'readonly' : '' ?>>
+                            <input class="form-control valid" name="lokasi" id="lokasi" type="number" placeholder="Masukan Koordinat" value="<?= ($dataOwner != null) ? $dataOwner['lokasi'] :  old('lokasi') ?>" <?= ($dataOwner != null) ? 'readonly' : '' ?> autocomplete="off">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="no_telp">Nomor Telepon <span class="text-danger">*</span></label>
                             <input class="form-control valid" name="no_telp" id="no_telp" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukan No Telp Aktif'" placeholder="Masukan No Telp Aktif" value="<?= ($dataOwner != null) ? $dataOwner['no_telp'] :  old('no_telp') ?>" <?= ($dataOwner != null) ? 'readonly' : '' ?>>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <label><b>Jenis Pembayaran yang disediakan :</b></label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="jenis_rek">Jenis Rekening <small>(Kosongkan jika tidak ada)</small></label>
+                            <div class="form-select" id="default-select">
+                                <select name="jenis_rek" id="kategori" <?= ($dataOwner != null) ? 'disabled' : '' ?>>
+                                    <?php if ($dataOwner != null) { ?>
+                                        <option value="<?= $dataOwner['jenis_rek'] ?>" selected><?= $dataOwner['jenis_rek'] ?></option>
+                                    <?php } else { ?>
+                                        <option value="">~ Pilih ~</option>
+                                        <option value="BANK BRI">BANK BRI</option>
+                                        <option value="BANK MANDIRI">BANK MANDIRI</option>
+                                        <option value="BANK BNI">BANK BNI</option>
+                                        <option value="BANK BTN">BANK BTN</option>
+                                        <option value="BANK BCA">BANK BCA</option>
+                                        <option value="BANK CIMB NIAGA">BANK CIMB NIAGA</option>
+                                        <option value="BANK DANAMON">BANK DANAMON</option>
+                                        <option value="BANK PERMATA">BANK PERMATA</option>
+                                        <option value="BANK MEGA">BANK MEGA</option>
+                                        <option value="BANK BJB">BANK BJB</option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="norek">Nomor Rekening <small>(Kosongkan jika tidak ada)</small></label>
+                            <input class="form-control valid" name="no_rek" id="norek" type="number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukan Nomor Rekening'" placeholder="Masukan Nomor Rekening" value="<?= ($dataOwner != null) ? $dataOwner['no_rek'] :  old('no_rek') ?>" <?= ($dataOwner != null) ? 'readonly' : '' ?>>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="nodana">Nomor Dana / Shopeepay <small>(Kosongkan jika tidak ada)</small></label>
+                            <input class="form-control valid" name="no_dana_shopee" id="nodana" type="number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukan Nomor Dana / Shopeepay'" placeholder="Masukan Nomor Dana / Shopeepay" value="<?= ($dataOwner != null) ? $dataOwner['no_dana_shopee'] :  old('no_dana_shopee') ?>" <?= ($dataOwner != null) ? 'readonly' : '' ?>>
                         </div>
                     </div>
                 </div>

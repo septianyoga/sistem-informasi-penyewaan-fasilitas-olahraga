@@ -62,7 +62,7 @@
     </div>
 
     <!--? Popular Directory Start -->
-    <div class="popular-directorya-area  border-bottom section-padding40 fix">
+    <div class="popular-directorya-area  border-bottom section-padding40 fix" id="kategori">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

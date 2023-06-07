@@ -97,6 +97,9 @@ class ModelAdmin extends Model
     public function getFotoByIdOwner($id_owner)
     {
         $fasilitas = $this->db->table('fasilitas')->where('id_owner', $id_owner)->get()->getRowArray();
-        return $this->db->table('foto')->where('id_fasilitas', $fasilitas['id_fasilitas'])->get()->getResultArray();
+        if ($fasilitas) {
+            return $this->db->table('foto')->where('id_fasilitas', $fasilitas['id_fasilitas'])->get()->getResultArray();
+        }
+        return null;
     }
 }

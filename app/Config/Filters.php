@@ -59,7 +59,10 @@ class Filters extends BaseConfig
                     '/kategori/*',
                     '/fasilitas/*',
                     '/sewa/*',
+                    '/detail_pemesanan',
                     '/metode_pembayaran/*',
+                    '/bayar',
+                    '/upload_pembayaran',
                 ],
             ],
             'filterowner' => [
@@ -76,7 +79,10 @@ class Filters extends BaseConfig
                     '/kategori/*',
                     '/fasilitas/*',
                     '/sewa/*',
+                    '/detail_pemesanan',
                     '/metode_pembayaran/*',
+                    '/bayar',
+                    '/upload_pembayaran',
                 ],
             ],
             'filteradmin' => [

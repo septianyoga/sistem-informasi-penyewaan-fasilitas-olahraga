@@ -32,7 +32,7 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('/kategori/(:any)', 'Kategori::index/$1');
 
-$routes->get('/pesanan', 'Home::index');
+$routes->get('/pesanan', 'Pesanan::index');
 
 $routes->get('/daftar', 'Fasilitas::daftarOwner');
 $routes->get('/daftarFasilitas', 'Fasilitas::daftarFasilitas');
@@ -67,9 +67,12 @@ $routes->post('/fasilitasTambah', 'Owner::tambahFasilitas');
 
 $routes->get('/fasilitas/(:num)', 'Fasilitas::detail/$1');
 
-$routes->post('/sewa/(:num)', 'Fasilitas::sewa/$1');
+$routes->get('/sewa/(:num)', 'Fasilitas::sewa/$1');
 $routes->post('/sewa/booking', 'Fasilitas::booking');
+$routes->post('/detail_pemesanan', 'Fasilitas::detail_pemesanan');
 $routes->get('/metode_pembayaran/(:num)', 'Fasilitas::metode_p/$1');
+$routes->post('/bayar', 'Fasilitas::bayar');
+$routes->post('/upload_pembayaran', 'Fasilitas::upload_bayar');
 
 
 /*

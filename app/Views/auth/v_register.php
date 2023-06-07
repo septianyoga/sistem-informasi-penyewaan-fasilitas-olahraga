@@ -56,6 +56,12 @@
                                         <input class="form-control" name="password" type="password" placeholder="Enter Password">
                                     </div>
                                 </div>
+                                <div class="col-lg-12 mt-2">
+                                    <div class="form-group">
+                                        <label class="text-secondary hijau">Password Repeat</label>
+                                        <input class="form-control" name="password_repeat" type="password" placeholder="Enter Password Repeat">
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block mt-2">Create Account</button>
                             <div class="col-lg-12 mt-3">

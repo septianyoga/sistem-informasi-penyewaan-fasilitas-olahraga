@@ -7,7 +7,7 @@
                 <div class="col-lg-12">
                     <!-- Section Tittle -->
                     <div class="section-tittle mt-5 ">
-                        <h2><b><a href="<?= base_url() ?>"><i class="bi bi-chevron-left"></i> <?= $kategori ?></a></b></h2>
+                        <h2><b><a href="<?= base_url('#kategori') ?>"><i class="bi bi-chevron-left"></i> <?= $kategori ?></a></b></h2>
                     </div>
                 </div>
             </div>

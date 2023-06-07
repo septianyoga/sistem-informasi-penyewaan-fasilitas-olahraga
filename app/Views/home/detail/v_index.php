@@ -30,11 +30,12 @@
                                     <h2 class="blog-head"><?= $fasilitas['nama_fasilitas'] ?></h2>
                                 </a>
                                 <p><?= $fasilitas['keterangan'] ?></p>
-                                <p>Harga : Rp. <?= $fasilitas['harga'] . ' / ' . $fasilitas['hargaper'] ?></p>
+                                <p><i class="bi bi-pin-map"></i> <?= $fasilitas['alamat'] ?></p>
+                                <p>Harga : Rp. <?= number_format($fasilitas['harga'], 0, ",", ".") . ' / ' . $fasilitas['hargaper'] ?></p>
                                 <ul class="blog-info-link ">
-                                    <li><a href="#"><i class="bi bi-tag"></i> <?= $fasilitas['nama_kategori'] ?></a></li>
+                                    <li><a href="<?= base_url('kategori/' . $fasilitas['nama_kategori']) ?>"><i class="bi bi-tag"></i> <?= $fasilitas['nama_kategori'] ?></a></li>
                                     <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                    <form action="<?= base_url('sewa/' . $fasilitas['id_fasilitas']) ?>" method="post">
+                                    <form action="<?= base_url('sewa/' . $fasilitas['id_fasilitas']) ?>" method="get">
                                         <button class="btn btn-primary float-right">Sewa Sekarang</button>
                                     </form>
                                 </ul>

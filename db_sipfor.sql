@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2023 at 05:39 AM
+-- Generation Time: Jun 07, 2023 at 05:58 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -69,7 +69,7 @@ CREATE TABLE `fasilitas` (
 INSERT INTO `fasilitas` (`id_fasilitas`, `nama_fasilitas`, `keterangan`, `id_kategori`, `harga`, `hargaper`, `id_owner`, `status`, `thumnail`) VALUES
 (1, 'Lapangan Futsal', 'Lapangan satu satunya di kabupaten subang tenggara yang tidak ada di kota kota lain. segera sewa sekarang', 1, '20000', 'Jam', 19, 'Tervalidasi', '1685174884_40f044d82937d0f14026.jpeg'),
 (2, 'Lapangan Futsal', 'Satu satunya lapangan yang ada di bumi ini tidak ada lagi lapangan yang dapat di sewakan selain lapangan ini', 1, '150000', 'Jam', 20, 'Tervalidasi', '1685181797_852344c3b45164a12071.png'),
-(3, 'Lapangan Badminton', 'Lapangan dapat di sewakan untuk siapa saja', 2, '200000', 'Hari', 20, 'Tervalidasi', '1685459787_252fdeb753d34d8ec1d9.jpg');
+(3, 'Lapangan badminton', 'Lapangan badminton di kabupaten subang\r\nDapat di sewakan oleh siapa saja\r\nInclude  : \r\n- Toilet\r\n- Parkiran luas\r\n- Kamar mandi', 2, '300000', 'Hari', 20, 'Tervalidasi', '1685673596_9867451f6c3cee29cdca.jpg');
 
 -- --------------------------------------------------------
 
@@ -94,9 +94,8 @@ INSERT INTO `foto` (`id_foto`, `id_fasilitas`, `foto`) VALUES
 (71, 2, '1685181797_852344c3b45164a12071.png'),
 (72, 2, '1685181797_252171c512d6708281d3.png'),
 (73, 2, '1685181797_596435b0a4370619e284.png'),
-(74, 3, '1685459787_252fdeb753d34d8ec1d9.jpg'),
-(75, 3, '1685459787_aed9da1acde8272469cb.jpg'),
-(76, 3, '1685459787_6ebc571a9e7d94ef0054.jpg');
+(77, 3, '1685673596_9867451f6c3cee29cdca.jpg'),
+(78, 3, '1685673596_feba1b9c555bed200e8d.jpg');
 
 -- --------------------------------------------------------
 
@@ -129,6 +128,9 @@ CREATE TABLE `owner` (
   `no_telp` varchar(15) NOT NULL,
   `alamat` varchar(255) NOT NULL,
   `lokasi` varchar(50) NOT NULL,
+  `jenis_rek` varchar(30) DEFAULT NULL,
+  `no_rek` varchar(30) DEFAULT NULL,
+  `no_dana_shopee` varchar(30) DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -136,9 +138,10 @@ CREATE TABLE `owner` (
 -- Dumping data for table `owner`
 --
 
-INSERT INTO `owner` (`id_owner`, `id_penyewa`, `no_telp`, `alamat`, `lokasi`, `status`) VALUES
-(19, 1, '0899737341212', 'jl cibogo kabupaten subang tenggara', '0293849384', 'Verified'),
-(20, 3, '0349394734', 'Jl subang kabupaten cibogo kecamatan jawa tambun selatan kabupaten bekasi, sebelah rumah hejo belakang pt alfamart lurus belok kiri.', '03943749347', 'Verified');
+INSERT INTO `owner` (`id_owner`, `id_penyewa`, `no_telp`, `alamat`, `lokasi`, `jenis_rek`, `no_rek`, `no_dana_shopee`, `status`) VALUES
+(19, 1, '0899737341212', 'jl cibogo kabupaten subang tenggara', '0293849384', 'BANK BCA', '123123456', '09283498924', 'Verified'),
+(20, 3, '0349394734', 'Jl subang kabupaten cibogo kecamatan jawa tambun selatan kabupaten bekasi, sebelah rumah hejo belakang pt alfamart lurus belok kiri.', '03943749347', 'BANK MANDIRI', '321123456', '078342349', 'Verified'),
+(22, 2, '0897873483832', 'Jl subang kabupaten cibogo kecamatan jawa tambun selatan kabupaten bekasi, sebelah bengkel', '-939493493849', 'BANK BRI', '1234567890', '0897873483832', NULL);
 
 -- --------------------------------------------------------
 
@@ -162,12 +165,13 @@ CREATE TABLE `penyewa` (
 
 INSERT INTO `penyewa` (`id_penyewa`, `nama_penyewa`, `username`, `password`, `email`, `role`, `foto`) VALUES
 (1, 'Septian', 'septian', '123456', 'titikkoma219@gmail.com', 'Owner', NULL),
-(2, 'Coba', 'coba', '123456', 'coba@gmail.com', 'Penyewa', NULL),
+(2, 'Coba', 'coba', '123456', 'coba@gmail.com', 'Owner', NULL),
 (3, 'Udin', 'udin', '123456', 'udin@gmail.com', 'Owner', NULL),
 (4, 'Asep', 'asep', '123456', 'asep@gmail.com', 'Penyewa', NULL),
 (5, 'ray', 'ray', '123456', 'septiannn123@gmail.com', 'Penyewa', NULL),
 (7, 'intan', 'kartika', '123456', 'kd11281991@gmail.com', 'Penyewa', NULL),
-(8, 'Andi', 'supri', '123456', 'supri@gmail.com', 'Penyewa', NULL);
+(8, 'Andi', 'supri', '123456', 'supri@gmail.com', 'Penyewa', NULL),
+(13, 'ma\'ruf', 'terserah', 'password', 'mugi.gia@gmail.com', 'Penyewa', NULL);
 
 -- --------------------------------------------------------
 
@@ -191,12 +195,16 @@ CREATE TABLE `pesanan` (
 --
 
 INSERT INTO `pesanan` (`id_pesanan`, `id_penyewa`, `id_fasilitas`, `tanggal`, `nominal`, `bukti_pembayaran`, `metode_pembayaran`, `status`) VALUES
-(1, 7, 3, '2023-06-01 00:00:00', 200000, NULL, NULL, NULL),
-(2, 5, 3, '2023-06-03 00:09:00', 100000, NULL, NULL, NULL),
-(3, 1, 3, '2023-06-02 00:00:00', 200000, NULL, NULL, NULL),
-(4, 1, 3, '2023-06-05 00:00:00', 200000, NULL, NULL, NULL),
 (5, 5, 1, '2023-05-31 08:00:00', 150000, NULL, NULL, NULL),
-(6, 1, 3, '2023-06-06 00:00:00', 200000, NULL, NULL, NULL);
+(7, 3, 2, '2023-05-31 15:00:00', 200000, NULL, NULL, NULL),
+(8, 1, 1, '2023-05-31 18:00:00', 20000, NULL, NULL, NULL),
+(9, 1, 1, '2023-06-03 17:00:00', 20000, NULL, NULL, NULL),
+(10, 1, 1, '2023-06-03 22:00:00', 20000, NULL, NULL, NULL),
+(11, 13, 1, '2023-06-01 10:00:00', 20000, NULL, NULL, NULL),
+(12, 13, 1, '2023-06-01 11:00:00', 20000, NULL, NULL, NULL),
+(13, 1, 1, '2023-06-04 10:00:00', 20000, NULL, NULL, NULL),
+(18, 1, 3, '2023-06-08 22:15:20', 300000, NULL, 'Non Tunai', NULL),
+(19, 1, 3, '2023-06-08 22:19:56', 300000, '1686066916_48094767d427395ffa2c.png', 'Non Tunai', NULL);
 
 --
 -- Indexes for dumped tables
@@ -270,7 +278,7 @@ ALTER TABLE `fasilitas`
 -- AUTO_INCREMENT for table `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -282,19 +290,19 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `owner`
 --
 ALTER TABLE `owner`
-  MODIFY `id_owner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_owner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `penyewa`
 --
 ALTER TABLE `penyewa`
-  MODIFY `id_penyewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_penyewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

@@ -65,6 +65,7 @@ class ModelFasilitas extends Model
     {
         return $this->db->table('fasilitas')
             ->join('kategori', 'kategori.id_kategori = fasilitas.id_kategori')
+            ->join('owner', 'owner.id_owner = fasilitas.id_owner')
             ->where('id_fasilitas', $id_fasilitas)->get()->getRowArray();
     }
 }

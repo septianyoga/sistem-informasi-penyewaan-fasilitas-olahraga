@@ -104,8 +104,10 @@ class Admin extends BaseController
         ];
 
         $getDataFoto = $this->ModelAdmin->getFotoByIdOwner($id_owner);
-        foreach ($getDataFoto as $foto) {
-            unlink(ROOTPATH . 'public/foto_fasilitas/' . $foto['foto']);
+        if ($getDataFoto != null) {
+            foreach ($getDataFoto as $foto) {
+                unlink(ROOTPATH . 'public/foto_fasilitas/' . $foto['foto']);
+            }
         }
         $this->ModelAdmin->ubahStatus($updateStatus);
         $this->ModelAdmin->delOwner($data);

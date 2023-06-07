@@ -38,6 +38,9 @@ class Owner extends BaseController
         $alamat = $this->request->getPost('alamat');
         $lokasi = $this->request->getPost('lokasi');
         $no_telp = $this->request->getPost('no_telp');
+        $jenis_rek = $this->request->getPost('jenis_rek');
+        $no_rek = $this->request->getPost('no_rek');
+        $no_dana_shopee = $this->request->getPost('no_dana_shopee');
 
 
         $validasi = [
@@ -89,10 +92,13 @@ class Owner extends BaseController
 
             // insert to owner
             $dataOwner = [
-                'id_penyewa' => session()->get('id'),
-                'no_telp'   => $no_telp,
-                'alamat'   => $alamat,
-                'lokasi'   => $lokasi,
+                'id_penyewa'        => session()->get('id'),
+                'no_telp'           => $no_telp,
+                'alamat'            => $alamat,
+                'lokasi'            => $lokasi,
+                'jenis_rek'         => $jenis_rek,
+                'no_rek'            => $no_rek,
+                'no_dana_shopee'    => $no_dana_shopee,
             ];
             $this->ModelOwner->insertToOwner($dataOwner);
 

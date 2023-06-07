@@ -46,7 +46,7 @@ class Auth extends BaseController
             ],
             'password' => [
                 'label' => 'Password',
-                'rules' => 'required|min_length[6]|alpha_numeric',
+                'rules' => 'required|min_length[6]',
                 'errors' => [
                     'required' => '{field} wajib diisi.',
                     'min_length' => '{field} minimal 6 huruf / angka.',
@@ -87,7 +87,7 @@ class Auth extends BaseController
                     return redirect()->to(base_url('admin'));
                 }
                 session()->setFlashdata('login', 'Login gagal!!! Username atau password salah.');
-                return redirect()->to(base_url('login'));
+                return redirect()->to(base_url('login'))->withInput();
             }
         } else {
             //jika tidak valid
@@ -125,11 +125,19 @@ class Auth extends BaseController
             ],
             'password' => [
                 'label' => 'Password',
-                'rules' => 'required|min_length[6]|alpha_numeric',
+                'rules' => 'required|min_length[6]',
                 'errors' => [
                     'required' => '{field} wajib diisi.',
                     'min_length' => '{field} minimal 6 huruf / angka.',
-                    'alpha_numeric' => '{field} tidak boleh berisi karakter.'
+                ],
+            ],
+            'password_repeat' => [
+                'label' => 'Password Repeat',
+                'rules' => 'required|min_length[6]|matches[password]',
+                'errors' => [
+                    'required' => '{field} wajib diisi.',
+                    'min_length' => '{field} minimal 6 huruf / angka.',
+                    'matches' => '{field} tidak sama.'
                 ],
             ],
         ];

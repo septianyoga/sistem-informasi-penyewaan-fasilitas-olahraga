@@ -42,8 +42,10 @@
                                 <h1 class="ml-4">Pilih Tanggal Penyewaan / Hari</h1>
                             </div>
                             <div class="blog_details">
-                                <div class="col-lg-12">
-                                    <div id="calendar"></div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div id="calendar"></div>
+                                    </div>
                                 </div>
                             </div>
                         </article>
@@ -73,12 +75,6 @@
             },
             events: [
                 <?php
-
-                //melakukan koneksi ke database
-                // $koneksi    = mysqli_connect('localhost', 'root', '', 'crud_kalender');
-                //mengambil data dari tabel jadwal
-                // $data       = mysqli_query($koneksi, 'select * from jadwal');
-                //melakukan looping
                 foreach ($pesanan as $value) {
                     $tanggal = explode(' ', $value['tanggal']);
                 ?> {
@@ -90,6 +86,7 @@
             eventDisplay: 'background',
             eventColor: 'grey',
             dateClick: function(info) {
+                var tglIndo = info.dateStr.split("-").reverse().join("-");
                 if ("<?= date('Y-m-d') ?>" > info.dateStr) {
                     // alert('Maaf tanggal sudah terlewat.');
                     Swal.fire(
@@ -99,7 +96,7 @@
                     )
                 } else {
                     Swal.fire({
-                        title: 'Yakin ingin melakukan sewa di tanggal ' + info.dateStr + '?',
+                        title: 'Yakin ingin melakukan sewa di tanggal ' + tglIndo + '?',
                         text: "Anda dapat membatalkan pesanan kapan saja!",
                         icon: 'question',
                         showCancelButton: true,
@@ -108,26 +105,27 @@
                         confirmButtonText: 'Ya, Tentu!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            $.ajax({
-                                url: '<?= base_url('sewa/booking') ?>',
-                                type: 'POST',
-                                data: {
-                                    id_penyewa: <?= session()->get('id') ?>,
-                                    id_fasilitas: <?= $fasilitas['id_fasilitas'] ?>,
-                                    tanggal: info.dateStr,
-                                    nominal: <?= $fasilitas['harga'] ?>
-                                },
-                                success: function(result) {
-                                    // alert(result)
-                                    Swal.fire(
-                                        'Berhasil!',
-                                        'Booking anda telah di buat.',
-                                        'success'
-                                    )
-                                    setTimeout(() => document.location.href = '<?= base_url('/metode_pembayaran/') ?>' + result, 3000);
-                                    // setTimeout(alert('halo'), 5000);
-                                }
-                            })
+                            $('<form action="<?= base_url('/detail_pemesanan') ?>" method="post"><input type="hidden" name="id_penyewa" value="<?= session()->get('id') ?>"></input><input type="hidden" name="id_fasilitas" value="<?= $fasilitas['id_fasilitas'] ?>"></input><input type="hidden" name="tanggal" value="' + info.dateStr + '"></input><input type="hidden" name="nominal" value="<?= $fasilitas['harga'] ?>"></input></form>').appendTo('body').submit().remove();
+                            // $.ajax({
+                            //     url: '<?= base_url('sewa/booking') ?>',
+                            //     type: 'POST',
+                            //     data: {
+                            //         id_penyewa: <?= session()->get('id') ?>,
+                            //         id_fasilitas: <?= $fasilitas['id_fasilitas'] ?>,
+                            //         tanggal: info.dateStr,
+                            //         nominal: <?= $fasilitas['harga'] ?>
+                            //     },
+                            //     success: function(result) {
+                            //         // alert(result)
+                            //         Swal.fire(
+                            //             'Berhasil!',
+                            //             'Booking anda telah di buat.',
+                            //             'success'
+                            //         )
+                            //         setTimeout(() => document.location.href = '<?= base_url('/metode_pembayaran/') ?>' + result, 3000);
+                            //         // setTimeout(alert('halo'), 5000);
+                            //     }
+                            // })
 
                         }
                     })
@@ -137,9 +135,9 @@
             },
             // eventBackgroundColor: "gray",
             // textColor: 'yellow',
-            //  select: function(info) {
-            //      alert('selected ' + info.startStr + ' to ' + info.endStr);
-            //  }
+            // select: function(info) {
+            //     alert('selected ' + info.startStr + ' to ' + info.endStr);
+            // }
         });
 
         calendar.render();

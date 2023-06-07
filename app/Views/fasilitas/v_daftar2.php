@@ -114,21 +114,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12">
-                            <label><b>Pembayaran :</b></label>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="norek">Nomor Rekening <small>(Kosongkan jika tidak ada)</small></label>
-                                <input class="form-control valid" name="norek" id="norek" type="number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukan Nomor Rekening'" placeholder="Masukan Nomor Rekening" value="<?= old('norek') ?>">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="nodana">Nomor Dana / Shopeepay <small>(Kosongkan jika tidak ada)</small></label>
-                                <input class="form-control valid" name="nodana" id="nodana" type="number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukan Nomor Dana / Shopeepay'" placeholder="Masukan Nomor Dana / Shopeepay" value="<?= old('nodana') ?>">
-                            </div>
-                        </div>
                     <?php } else { ?>
                         <div class="directory-details">
                             <div class="container">

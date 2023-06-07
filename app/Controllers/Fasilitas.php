@@ -243,15 +243,66 @@ class Fasilitas extends BaseController
         echo $data_terakhir['id_pesanan'];
     }
 
+    public function detail_pemesanan()
+    {
+        $fasilitas = $this->ModelFasilitas->getFasilitasById($this->request->getPost('id_fasilitas'));
+        $data = [
+            'title'         => 'Detail Pembayaran',
+            'penyewa'       => $this->ModelHome->getPenyewa(session()->get('id')),
+            'data'          => $this->request->getPost(),
+            'fasilitas'     => $fasilitas,
+            'isi'           => 'home/detail/v_detail_pemesanan'
+        ];
+        // dd($data['data']);
+        return view('layout/v_wrapper', $data);
+    }
+
+    public function bayar()
+    {
+        // insert
+        if (!$this->ModelPesanan->where('tanggal', $this->request->getPost('tanggal'))->find()) {
+            $this->ModelPesanan->insert($this->request->getPost());
+        }
+        $last_data = $this->ModelPesanan->orderBy('id_pesanan', 'DESC')->limit(1)->get()->getRowArray();
+        $owner = $this->ModelFasilitas->getFasilitasById($last_data['id_fasilitas']);
+        if ($this->request->getPost('metode_pembayaran') == 'Non Tunai') {
+            $data = [
+                'title'         => 'Selesaikan Pembayaran',
+                'penyewa'       => $this->ModelHome->getPenyewa(session()->get('id')),
+                'data'          => $last_data,
+                'owner'         => $owner,
+                'isi'           => 'home/bayar/v_bayar'
+            ];
+            return view('layout/v_wrapper', $data);
+        }
+
+        session()->setFlashdata('pesan', 'Pesanan Anda Berhasil Dibuat!');
+        return redirect()->to(base_url('pesanan'));
+    }
+
+    public function upload_bayar()
+    {
+        $bukti_pembayaran = $this->request->getFile('bukti_pembayaran');
+        $nama_baru = $bukti_pembayaran->getRandomName();
+        $bukti_pembayaran->move(ROOTPATH . 'public/bukti_pembayaran', $nama_baru);
+        $data = [
+            'id_pesanan' => $this->request->getPost('id_pesanan'),
+            'bukti_pembayaran' => $nama_baru
+        ];
+        $this->ModelPesanan->update($this->request->getPost('id_pesanan'), $data);
+        session()->setFlashdata('pesan', 'Pembayaran Berhasil Diupload!');
+        return redirect()->to(base_url('pesanan'));
+    }
+
     public function metode_p($id)
     {
-        $data = [
-            'title'         => 'Metode Pembayaran',
-            'penyewa'       => $this->ModelHome->getPenyewa(session()->get('id')),
-            'fasilitas'     => $this->ModelFasilitas->getFasilitasById($id),
-            'foto'          => $this->ModelFasilitas->getFoto($id),
-            'isi'           => 'home/metode_pembayaran/v_metode'
-        ];
-        return view('layout/v_wrapper', $data);
+        // $data = [
+        //     'title'         => 'Metode Pembayaran',
+        //     'penyewa'       => $this->ModelHome->getPenyewa(session()->get('id')),
+        //     'fasilitas'     => $this->ModelFasilitas->getFasilitasById($id),
+        //     'foto'          => $this->ModelFasilitas->getFoto($id),
+        //     'isi'           => 'home/metode_pembayaran/v_metode'
+        // ];
+        // return view('layout/v_wrapper', $data);
     }
 }
