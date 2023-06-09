@@ -14,7 +14,7 @@ class ModelPesanan extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_pesanan', 'id_penyewa', 'id_fasilitas', 'tanggal', 'nominal', 'bukti_pembayaran', 'metode_pembayaran', 'status'];
+    protected $allowedFields    = ['id_pesanan', 'id_penyewa', 'id_fasilitas', 'tanggal', 'nominal', 'bukti_pembayaran', 'metode_pembayaran', 'status_pesanan'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,4 +39,12 @@ class ModelPesanan extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getJumlah($jenis)
+    {
+        return $this->where([
+            'id_penyewa' => session()->get('id'),
+            'status_pesanan'    => $jenis
+        ])->countAllResults();
+    }
 }

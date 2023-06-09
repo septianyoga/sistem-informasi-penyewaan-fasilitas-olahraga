@@ -98,26 +98,27 @@
                         confirmButtonText: 'Ya, Tentu!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            $.ajax({
-                                url: '<?= base_url('sewa/booking') ?>',
-                                type: 'POST',
-                                data: {
-                                    id_penyewa: <?= session()->get('id') ?>,
-                                    id_fasilitas: <?= $fasilitas['id_fasilitas'] ?>,
-                                    tanggal: jam,
-                                    nominal: <?= $fasilitas['harga'] ?>
-                                },
-                                success: function(result) {
-                                    // alert(result)
-                                    Swal.fire(
-                                        'Berhasil!',
-                                        'Booking anda telah di buat.',
-                                        'success'
-                                    )
-                                    setTimeout(() => document.location.href = '<?= base_url('/metode_pembayaran/') ?>' + result, 3000);
-                                    // setTimeout(alert('halo'), 5000);
-                                }
-                            })
+                            $('<form action="<?= base_url('/detail_pemesanan') ?>" method="post"><input type="hidden" name="id_penyewa" value="<?= session()->get('id') ?>"></input><input type="hidden" name="id_fasilitas" value="<?= $fasilitas['id_fasilitas'] ?>"></input><input type="hidden" name="tanggal" value="' + jam + '"></input><input type="hidden" name="nominal" value="<?= $fasilitas['harga'] ?>"></input></form>').appendTo('body').submit().remove();
+                            // $.ajax({
+                            //     url: '<?= base_url('sewa/booking') ?>',
+                            //     type: 'POST',
+                            //     data: {
+                            //         id_penyewa: <?= session()->get('id') ?>,
+                            //         id_fasilitas: <?= $fasilitas['id_fasilitas'] ?>,
+                            //         tanggal: jam,
+                            //         nominal: <?= $fasilitas['harga'] ?>
+                            //     },
+                            //     success: function(result) {
+                            //         // alert(result)
+                            //         Swal.fire(
+                            //             'Berhasil!',
+                            //             'Booking anda telah di buat.',
+                            //             'success'
+                            //         )
+                            //         setTimeout(() => document.location.href = '<?= base_url('/metode_pembayaran/') ?>' + result, 3000);
+                            //         // setTimeout(alert('halo'), 5000);
+                            //     }
+                            // })
 
                         }
                     })

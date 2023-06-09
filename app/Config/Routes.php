@@ -33,6 +33,8 @@ $routes->get('/', 'Home::index');
 $routes->get('/kategori/(:any)', 'Kategori::index/$1');
 
 $routes->get('/pesanan', 'Pesanan::index');
+$routes->get('/pesanan/lihat/(:any)', 'Pesanan::lihat/$1');
+$routes->get('/pesanan/lanjut_bayar/(:num)', 'Pesanan::lanjut_bayar/$1');
 
 $routes->get('/daftar', 'Fasilitas::daftarOwner');
 $routes->get('/daftarFasilitas', 'Fasilitas::daftarFasilitas');
@@ -64,6 +66,7 @@ $routes->get('/owner/fasilitas/edit/(:num)', 'Owner::editFasilitas/$1');
 $routes->post('/owner/fasilitas/edit', 'Owner::prosesEditFasilitas');
 $routes->post('/insertOwner', 'Owner::daftar');
 $routes->post('/fasilitasTambah', 'Owner::tambahFasilitas');
+$routes->get('/owner/pesanan', 'Owner::pesanan');
 
 $routes->get('/fasilitas/(:num)', 'Fasilitas::detail/$1');
 

@@ -52,6 +52,7 @@ class Filters extends BaseConfig
                 'except' => [
                     '/',
                     '/pesanan',
+                    '/pesanan/*',
                     '/daftarFasilitas',
                     '/daftar',
                     '/insertOwner',
@@ -69,6 +70,7 @@ class Filters extends BaseConfig
                 'except' => [
                     '/',
                     '/pesanan',
+                    '/pesanan/*',
                     '/owner',
                     '/owner/*',
                     '/daftarFasilitas',

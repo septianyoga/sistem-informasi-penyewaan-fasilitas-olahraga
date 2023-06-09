@@ -287,7 +287,8 @@ class Fasilitas extends BaseController
         $bukti_pembayaran->move(ROOTPATH . 'public/bukti_pembayaran', $nama_baru);
         $data = [
             'id_pesanan' => $this->request->getPost('id_pesanan'),
-            'bukti_pembayaran' => $nama_baru
+            'bukti_pembayaran' => $nama_baru,
+            'status_pesanan'        => 'Dibayar'
         ];
         $this->ModelPesanan->update($this->request->getPost('id_pesanan'), $data);
         session()->setFlashdata('pesan', 'Pembayaran Berhasil Diupload!');

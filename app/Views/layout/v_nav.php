@@ -27,7 +27,7 @@
                                 <li class="<?= ($title == 'Home') ? 'active' : '' ?>"><a href="<?= base_url() ?>">Home</a></li>
                                 <li class="<?= ($title == 'About') ? 'active' : '' ?>"><a href="<?= base_url('about') ?>">About</a></li>
                                 <?php if (session()->get('log')) { ?>
-                                    <li class="<?= ($title == 'Pesanan') ? 'active' : '' ?>"><a href="<?= base_url('pesanan') ?>">Pesanan</a></li>
+                                    <li class="<?= ($title == 'Pesanan' || $title == 'Belum Dibayar' || $title == 'Menunggu Verifikasi') ? 'active' : '' ?>"><a href="<?= base_url('pesanan') ?>">Pesanan</a></li>
                                 <?php } else { ?>
                                     <div id="login">
                                         <li><a href="<?= base_url('login') ?>" class="mr-40 login"><i class="ti-user"></i> Log in</a></li>

@@ -163,4 +163,13 @@
                 'warning'
             )
         </script>
+    <?php }
+    if (session()->getFlashdata('pesan')) { ?>
+        <script>
+            Swal.fire(
+                'Berhasil',
+                '<?= session()->getFlashdata('pesan') ?>',
+                'success'
+            )
+        </script>
     <?php } ?>

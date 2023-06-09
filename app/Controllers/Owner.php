@@ -5,11 +5,12 @@ namespace App\Controllers;
 use App\Models\ModelFasilitas;
 use App\Models\ModelHome;
 use App\Models\ModelOwner;
+use App\Models\ModelPesanan;
 
 class Owner extends BaseController
 {
 
-    private $ModelOwner, $ModelHome, $ModelFasilitas;
+    private $ModelOwner, $ModelHome, $ModelFasilitas, $ModelPesanan;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class Owner extends BaseController
         $this->ModelOwner = new ModelOwner();
         $this->ModelHome = new ModelHome();
         $this->ModelFasilitas = new ModelFasilitas();
+        $this->ModelPesanan = new ModelPesanan();
     }
 
     public function index()
@@ -375,5 +377,15 @@ class Owner extends BaseController
             session()->setFlashdata('errors', \config\Services::validation()->getErrors());
             return redirect()->to(base_url('owner/fasilitas'))->withInput();
         }
+    }
+
+    public function pesanan()
+    {
+        // $data = [
+        //     'title'     => 'Pesanan',
+        //     'data'      => $this->ModelPesanan->f;
+        //     'isi'       => 'owner/v_editFasilitas'
+        // ];
+        // return view('layout/v_wrapper_admin', $data);
     }
 }

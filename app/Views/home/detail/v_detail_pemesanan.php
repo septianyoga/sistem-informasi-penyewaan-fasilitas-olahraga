@@ -37,6 +37,7 @@
                                                 <input type="hidden" name="id_fasilitas" value="<?= $data['id_fasilitas'] ?>">
                                                 <input type="hidden" name="tanggal" value="<?= $data['tanggal'] ?> <?= ($fasilitas['hargaper'] == 'Hari') ? date('H:i:s') : '' ?>">
                                                 <input type="hidden" name="nominal" value="<?= $data['nominal'] ?>">
+                                                <input type="hidden" name="status" value="Belum Dibayar">
                                                 <div class="row">
                                                     <div class="col-12 col-md-12 col-lg-6">
                                                         <?php if ($fasilitas['no_rek'] != null || $fasilitas['no_dana_shopee'] != null) { ?>
