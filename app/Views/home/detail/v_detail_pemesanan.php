@@ -35,9 +35,9 @@
                                             <form action="<?= base_url('bayar') ?>" method="post">
                                                 <input type="hidden" name="id_penyewa" value="<?= $data['id_penyewa'] ?>">
                                                 <input type="hidden" name="id_fasilitas" value="<?= $data['id_fasilitas'] ?>">
-                                                <input type="hidden" name="tanggal" value="<?= $data['tanggal'] ?> <?= ($fasilitas['hargaper'] == 'Hari') ? date('H:i:s') : '' ?>">
+                                                <input type="hidden" name="tanggal" value="<?= $data['tanggal'] ?> <?= ($fasilitas['hargaper'] == 'Hari') ? '00:00:00' : '' ?>">
                                                 <input type="hidden" name="nominal" value="<?= $data['nominal'] ?>">
-                                                <input type="hidden" name="status" value="Belum Dibayar">
+                                                <input type="hidden" name="status_pesanan" value="Belum Dibayar">
                                                 <div class="row">
                                                     <div class="col-12 col-md-12 col-lg-6">
                                                         <?php if ($fasilitas['no_rek'] != null || $fasilitas['no_dana_shopee'] != null) { ?>

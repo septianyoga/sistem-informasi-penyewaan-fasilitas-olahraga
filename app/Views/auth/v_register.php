@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label class="text-secondary hijau">Email</label>
+                                        <label class="text-secondary hijau">Email Active</label>
                                         <input class="form-control" name="email" type="email" placeholder="Enter Email">
                                     </div>
                                 </div>

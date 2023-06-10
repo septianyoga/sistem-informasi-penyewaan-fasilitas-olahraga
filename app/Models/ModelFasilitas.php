@@ -68,4 +68,10 @@ class ModelFasilitas extends Model
             ->join('owner', 'owner.id_owner = fasilitas.id_owner')
             ->where('id_fasilitas', $id_fasilitas)->get()->getRowArray();
     }
+
+    public function totalFasilitas()
+    {
+        $owner = $this->db->table('owner')->where('id_penyewa', session()->get('id'))->get()->getRowArray();
+        return $this->db->table('fasilitas')->where('id_owner', $owner['id_owner'])->countAllResults();
+    }
 }

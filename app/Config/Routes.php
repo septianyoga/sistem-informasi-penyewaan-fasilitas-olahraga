@@ -61,12 +61,17 @@ $routes->get('/admin/fasilitas', 'Admin::showFasilitas');
 
 $routes->get('/owner', 'Owner::index');
 $routes->get('/owner/fasilitas', 'Owner::showFasilitas');
+$routes->get('/owner/fasilitas/(:num)/show', 'Owner::detailFasilitas/$1');
 $routes->get('/owner/fasilitas/(:num)', 'Owner::deleteFasilitas/$1');
 $routes->get('/owner/fasilitas/edit/(:num)', 'Owner::editFasilitas/$1');
 $routes->post('/owner/fasilitas/edit', 'Owner::prosesEditFasilitas');
 $routes->post('/insertOwner', 'Owner::daftar');
 $routes->post('/fasilitasTambah', 'Owner::tambahFasilitas');
 $routes->get('/owner/pesanan', 'Owner::pesanan');
+$routes->get('/owner/pesanan/(:num)', 'Owner::detail_pesanan/$1');
+$routes->get('/owner/pesanan/approv/(:num)', 'Owner::approv_pesanan/$1');
+$routes->post('/owner/pesanan/tolak', 'Owner::tolak_pesanan');
+$routes->get('/owner/laporan', 'Owner::laporan');
 
 $routes->get('/fasilitas/(:num)', 'Fasilitas::detail/$1');
 

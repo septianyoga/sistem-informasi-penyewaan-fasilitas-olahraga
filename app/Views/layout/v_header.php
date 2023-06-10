@@ -124,7 +124,7 @@
         }
 
         .text-hijau {
-            color: #08b4ac;
+            color: #08b4ac !important;
         }
     </style>
 
@@ -159,7 +159,7 @@
         <script>
             Swal.fire(
                 'Oops...',
-                '<?= session()->getFlashdata('pesan') ?>',
+                '<?= session()->getFlashdata('pesanerror') ?>',
                 'warning'
             )
         </script>

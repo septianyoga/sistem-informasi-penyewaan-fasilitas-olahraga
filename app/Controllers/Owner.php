@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ModelAdmin;
 use App\Models\ModelFasilitas;
 use App\Models\ModelHome;
 use App\Models\ModelOwner;
@@ -10,7 +11,7 @@ use App\Models\ModelPesanan;
 class Owner extends BaseController
 {
 
-    private $ModelOwner, $ModelHome, $ModelFasilitas, $ModelPesanan;
+    private $ModelOwner, $ModelHome, $ModelFasilitas, $ModelPesanan, $ModelAdmin;
 
     public function __construct()
     {
@@ -19,6 +20,8 @@ class Owner extends BaseController
         $this->ModelHome = new ModelHome();
         $this->ModelFasilitas = new ModelFasilitas();
         $this->ModelPesanan = new ModelPesanan();
+        $this->ModelAdmin = new ModelAdmin();
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     public function index()
@@ -28,6 +31,7 @@ class Owner extends BaseController
         }
         $data = [
             'title'     => 'Dashboard Owner',
+            'countFasilitas'    => $this->ModelFasilitas->totalFasilitas(),
             'isi'       => 'owner/v_index'
         ];
         return view('layout/v_wrapper_admin', $data);
@@ -122,7 +126,7 @@ class Owner extends BaseController
             'title'     => 'Fasilitas Owner',
             'data'      => $this->ModelOwner->getAllFasilitas(session()->get('id')),
             'kategori'  => $this->ModelOwner->getKategori(),
-            'isi'       => 'owner/v_fasilitas'
+            'isi'       => 'owner/fasilitas/v_fasilitas'
         ];
         return view('layout/v_wrapper_admin', $data);
     }
@@ -229,6 +233,21 @@ class Owner extends BaseController
         }
     }
 
+    public function detailFasilitas($id_fasilitas)
+    {
+        if ($this->ModelHome->getPenyewa(session()->get('id')) == null) {
+            return redirect()->to(base_url('/'));
+        }
+        $data = [
+            'title'     => 'Detail Fasilitas',
+            'fasilitas' => $this->ModelAdmin->getFasilitasById($id_fasilitas),
+            'dtPenyewa' => $this->ModelAdmin->getPenyewaByIdFasilitas($id_fasilitas),
+            'foto'      => $this->ModelAdmin->getFoto($id_fasilitas),
+            'isi'       => 'owner/fasilitas/v_detailFasilitas'
+        ];
+        return view('layout/v_wrapper_admin', $data);
+    }
+
     public function deleteFasilitas($id_fasilitas)
     {
         $data = [
@@ -255,7 +274,7 @@ class Owner extends BaseController
             'title'     => 'Edit Fasilitas',
             'fasilitas' => $this->ModelOwner->getFasilitasById($id),
             'kategori'  => $this->ModelOwner->getKategori(),
-            'isi'       => 'owner/v_editFasilitas'
+            'isi'       => 'owner/fasilitas/v_editFasilitas'
         ];
         return view('layout/v_wrapper_admin', $data);
     }
@@ -381,11 +400,76 @@ class Owner extends BaseController
 
     public function pesanan()
     {
-        // $data = [
-        //     'title'     => 'Pesanan',
-        //     'data'      => $this->ModelPesanan->f;
-        //     'isi'       => 'owner/v_editFasilitas'
-        // ];
-        // return view('layout/v_wrapper_admin', $data);
+        $owner = $this->ModelOwner->getOwner();
+        $data = [
+            'title'     => 'Pesanan',
+            'data'      => $this->ModelPesanan->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')
+                ->join('penyewa', 'penyewa.id_penyewa = pesanan.id_penyewa')
+                ->where('id_owner', $owner['id_owner'])->findAll(),
+            'isi'       => 'owner/pesanan/v_pesanan'
+        ];
+        return view('layout/v_wrapper_admin', $data);
+    }
+
+    public function detail_pesanan($id)
+    {
+        $data = [
+            'title'         => 'Detail Pesanan',
+            'data'          => $this->ModelPesanan->join('penyewa', 'penyewa.id_penyewa = pesanan.id_penyewa')
+                ->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')
+                ->find($id),
+            'isi'           => 'owner/pesanan/v_detailPesanan'
+        ];
+        return view('layout/v_wrapper_admin', $data);
+    }
+
+    public function approv_pesanan($id)
+    {
+        $data = [
+            'id_pesanan'    => $id,
+            'status_pesanan' => 'Diapprov'
+        ];
+        $this->ModelPesanan->update($id, $data);
+        session()->setFlashdata('pesan', 'Berhasil Melakukan Approv Pesanan!');
+        return redirect()->to(base_url('owner/pesanan'));
+    }
+
+    public function tolak_pesanan()
+    {
+        $validasi = [
+            'alasan' => [
+                'label' => 'Alasan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diisi.'
+                ],
+            ],
+        ];
+
+        if ($this->validate($validasi)) {
+            $data = [
+                'alasan_tolak' => $this->request->getPost('alasan'),
+                'status_pesanan' => 'Ditolak'
+            ];
+            $this->ModelPesanan->update($this->request->getPost('id_pesanan'), $data);
+            session()->setFlashdata('pesan', 'Berhasil Menolak Pesanan!');
+            return redirect()->to(base_url('owner/pesanan'));
+        } else {
+            session()->setFlashdata('errors', \config\Services::validation()->getErrors());
+            return redirect()->back()->withInput();
+        }
+    }
+
+    public function laporan()
+    {
+        $owner = $this->ModelOwner->getOwner();
+        $data = [
+            'title'     => 'Laporan Pesanan',
+            'data'      => $this->ModelPesanan->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')
+                ->join('penyewa', 'penyewa.id_penyewa = pesanan.id_penyewa')
+                ->where('id_owner', $owner['id_owner'])->findAll(),
+            'isi'       => 'owner/laporan/v_laporan'
+        ];
+        return view('layout/v_wrapper_admin', $data);
     }
 }

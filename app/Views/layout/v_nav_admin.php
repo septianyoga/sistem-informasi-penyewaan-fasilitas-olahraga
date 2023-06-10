@@ -59,7 +59,7 @@
                             </a>
                         </li>
                         <li class="<?= ($title == 'Laporan') ? 'active' : '' ?> sidebar-layout">
-                            <a href="#" class="svg-icon">
+                            <a href="<?= base_url('owner/laporan') ?>" class="svg-icon">
                                 <i class="bi bi-file-earmark"></i><span class="ml-2">Laporan</span>
                             </a>
                         </li>

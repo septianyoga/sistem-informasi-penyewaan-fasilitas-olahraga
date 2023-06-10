@@ -47,9 +47,9 @@
                                             <td><?= $row['harga'] ?> Per <?= $row['hargaper'] ?></td>
                                             <td><?= $row['nama_kategori'] ?></td>
                                             <td class="text-center">
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?= $row['id_fasilitas'] ?>"><i class="bi bi-trash"></i></button>
-                                                <a href="<?= base_url('owner/' . $row['id_fasilitas']) ?>" class="btn btn-success btn-sm"><i class="bi bi-eye"></i></a>
-                                                <a href="<?= base_url('owner/fasilitas/edit/' . $row['id_fasilitas']) ?>" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                                <button class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#delete<?= $row['id_fasilitas'] ?>"><i class="bi bi-trash"></i></button>
+                                                <a href="<?= base_url('owner/fasilitas/' . $row['id_fasilitas']) ?>/show" class="btn btn-success btn-sm m-1"><i class="bi bi-eye"></i></a>
+                                                <a href="<?= base_url('owner/fasilitas/edit/' . $row['id_fasilitas']) ?>" class="btn btn-primary btn-sm m-1"><i class="bi bi-pencil-square"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>

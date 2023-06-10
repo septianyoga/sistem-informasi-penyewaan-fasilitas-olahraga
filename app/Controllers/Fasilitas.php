@@ -245,6 +245,14 @@ class Fasilitas extends BaseController
 
     public function detail_pemesanan()
     {
+        $cek = $this->ModelPesanan->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')->where([
+            'hargaper' => 'Hari',
+            'tanggal'    => $this->request->getPost('tanggal') . ' 00:00:00',
+        ])->get()->getRowArray();
+        if ($cek) {
+            session()->setFlashdata('pesanerror', 'Maaf tanggal ini sudah dibooking!');
+            return redirect()->to(base_url('sewa/' . $this->request->getPost('id_fasilitas')));
+        }
         $fasilitas = $this->ModelFasilitas->getFasilitasById($this->request->getPost('id_fasilitas'));
         $data = [
             'title'         => 'Detail Pembayaran',

@@ -57,4 +57,9 @@ class ModelOwner extends Model
     {
         $this->db->table('fasilitas')->where('id_fasilitas', $data['id_fasilitas'])->update($data);
     }
+
+    public function getOwner()
+    {
+        return $this->db->table('owner')->where('id_penyewa', session()->get('id'))->get()->getRowArray();
+    }
 }
