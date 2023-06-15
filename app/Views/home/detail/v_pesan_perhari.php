@@ -40,6 +40,14 @@
                         <article class="blog_item">
                             <div class="blog_item_img">
                                 <h1 class="ml-4">Pilih Tanggal Penyewaan / Hari</h1>
+                                <?php
+                                // foreach ($pesanan as $coba) {
+                                // if ($coba['date_expired'] > date('Y-m-d H:i:s') || $coba['status_pesanan'] == 'Diapprov') {
+                                // if($coba[''])
+                                // echo $coba['id_pesanan'] . ' ' . $coba['date_expired'] . ' = ' . date('Y-m-d H:i:s') . ' | ';
+                                // }
+                                // }
+                                ?>
                             </div>
                             <div class="blog_details">
                                 <div class="row">
@@ -77,11 +85,13 @@
                 <?php
                 foreach ($pesanan as $value) {
                     $tanggal = explode(' ', $value['tanggal']);
+                    if ($value['date_expired'] > date('Y-m-d H:i:s') || $value['status_pesanan'] == 'Diapprov') {
                 ?> {
-                        title: 'Booked', //menampilkan title dari tabel
-                        start: '<?= $tanggal[0] ?>', //menampilkan tgl mulai dari tabel
-                    },
-                <?php } ?>
+                            title: 'Booked', //menampilkan title dari tabel
+                            start: '<?= $tanggal[0] ?>', //menampilkan tgl mulai dari tabel
+                        },
+                <?php  }
+                } ?>
             ],
             eventDisplay: 'background',
             eventColor: 'grey',

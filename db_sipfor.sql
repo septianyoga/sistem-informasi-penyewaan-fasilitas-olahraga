@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2023 at 05:40 PM
+-- Generation Time: Jun 15, 2023 at 02:37 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -58,7 +58,7 @@ CREATE TABLE `fasilitas` (
   `harga` varchar(11) NOT NULL,
   `hargaper` varchar(11) NOT NULL,
   `id_owner` int(11) NOT NULL,
-  `status` varchar(30) NOT NULL,
+  `status` enum('Tervalidasi','Belum Tervalidasi','Non Aktif') NOT NULL,
   `thumnail` varchar(255) DEFAULT NULL,
   `viewer` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -68,10 +68,11 @@ CREATE TABLE `fasilitas` (
 --
 
 INSERT INTO `fasilitas` (`id_fasilitas`, `nama_fasilitas`, `keterangan`, `id_kategori`, `harga`, `hargaper`, `id_owner`, `status`, `thumnail`, `viewer`) VALUES
-(1, 'Lapangan Futsal', 'Lapangan satu satunya di kabupaten subang tenggara yang tidak ada di kota kota lain. segera sewa sekarang', 1, '20000', 'Jam', 19, 'Tervalidasi', '1685174884_40f044d82937d0f14026.jpeg', 0),
-(2, 'Lapangan Futsal', 'Satu satunya lapangan yang ada di bumi ini tidak ada lagi lapangan yang dapat di sewakan selain lapangan ini', 1, '150000', 'Jam', 20, 'Tervalidasi', '1685181797_852344c3b45164a12071.png', 0),
-(3, 'Lapangan badminton', 'Lapangan badminton di kabupaten subang\r\nDapat di sewakan oleh siapa saja\r\nInclude  : \r\n- Toilet\r\n- Parkiran luas\r\n- Kamar mandi', 2, '300000', 'Hari', 20, 'Tervalidasi', '1685673596_9867451f6c3cee29cdca.jpg', 0),
-(4, 'Lapangan Futsal', 'tes', 2, '100000', 'Hari', 23, 'Belum Tervalidasi', '1686273235_f59aba0f3aa109d6f203.png', 0);
+(1, 'Lapangan Futsal', 'Lapangan satu satunya di kabupaten subang tenggara yang tidak ada di kota kota lain. segera sewa sekarang', 1, '20000', 'Jam', 19, 'Tervalidasi', '1685174884_40f044d82937d0f14026.jpeg', 1),
+(2, 'Lapangan Futsal', 'Satu satunya lapangan yang ada di bumi ini tidak ada lagi lapangan yang dapat di sewakan selain lapangan ini', 1, '150000', 'Jam', 20, 'Tervalidasi', '1685181797_852344c3b45164a12071.png', 2),
+(3, 'Lapangan badminton', 'Lapangan badminton di kabupaten subang\r\nDapat di sewakan oleh siapa saja\r\nInclude  : \r\n- Toilet\r\n- Parkiran luas\r\n- Kamar mandi', 2, '300000', 'Hari', 20, 'Tervalidasi', '1685673596_9867451f6c3cee29cdca.jpg', 1),
+(4, 'Lapangan Futsal', 'tes', 2, '100000', 'Hari', 23, 'Non Aktif', '1686273235_f59aba0f3aa109d6f203.png', 1),
+(5, 'Lapangan Basket', 'Lapangan basket satu satunya di subang', 3, '200001', 'Jam', 19, 'Tervalidasi', '1686716360_ea466b1b48bc9bb0f857.png', 5);
 
 -- --------------------------------------------------------
 
@@ -98,7 +99,10 @@ INSERT INTO `foto` (`id_foto`, `id_fasilitas`, `foto`) VALUES
 (73, 2, '1685181797_596435b0a4370619e284.png'),
 (77, 3, '1685673596_9867451f6c3cee29cdca.jpg'),
 (78, 3, '1685673596_feba1b9c555bed200e8d.jpg'),
-(79, 4, '1686273235_f59aba0f3aa109d6f203.png');
+(79, 4, '1686273235_f59aba0f3aa109d6f203.png'),
+(80, 5, '1686716360_ea466b1b48bc9bb0f857.png'),
+(81, 5, '1686716360_7612515ed24a444b2912.png'),
+(82, 5, '1686716360_4e17077ffb2faf9932a5.png');
 
 -- --------------------------------------------------------
 
@@ -117,7 +121,11 @@ CREATE TABLE `kategori` (
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 (1, 'Futsal'),
-(2, 'Badminton');
+(2, 'Badminton'),
+(3, 'Basket'),
+(4, 'Voly'),
+(5, 'GYM'),
+(6, 'Tenis');
 
 -- --------------------------------------------------------
 
@@ -142,10 +150,10 @@ CREATE TABLE `owner` (
 --
 
 INSERT INTO `owner` (`id_owner`, `id_penyewa`, `no_telp`, `alamat`, `lokasi`, `jenis_rek`, `no_rek`, `no_dana_shopee`, `status`) VALUES
-(19, 1, '0899737341212', 'jl cibogo kabupaten subang tenggara', '0293849384', 'BANK BCA', '123123456', '09283498924', 'Verified'),
-(20, 3, '0349394734', 'Jl subang kabupaten cibogo kecamatan jawa tambun selatan kabupaten bekasi, sebelah rumah hejo belakang pt alfamart lurus belok kiri.', '03943749347', 'BANK MANDIRI', '321123456', '078342349', 'Verified'),
-(22, 2, '0897873483832', 'Jl subang kabupaten cibogo kecamatan jawa tambun selatan kabupaten bekasi, sebelah bengkel', '-939493493849', 'BANK BRI', '1234567890', '0897873483832', NULL),
-(23, 14, '123457887', 'jl subang kabupaten subang provinsi subang', '123', '', '', '', NULL);
+(19, 1, '0899737341212', 'jl cibogo kabupaten subang tenggara', '-6.569290, 107.769059', 'BANK BCA', '123123456', '09283498924', 'Verified'),
+(20, 3, '0349394734', 'Jl subang kabupaten cibogo kecamatan jawa tambun selatan kabupaten bekasi, sebelah rumah hejo belakang pt alfamart lurus belok kiri.', '-6.550621, 107.764749', 'BANK MANDIRI', '321123456', '078342349', 'Verified'),
+(22, 2, '0897873483832', 'Jl subang kabupaten cibogo kecamatan jawa tambun selatan kabupaten bekasi, sebelah bengkel', '-6.556261, 107.761521', 'BANK BRI', '1234567890', '0897873483832', 'Verified'),
+(23, 14, '123457887', 'jl subang kabupaten subang provinsi subang', '-6.5757018,107.7668872', '', '', '', 'Verified');
 
 -- --------------------------------------------------------
 
@@ -160,23 +168,25 @@ CREATE TABLE `penyewa` (
   `password` varchar(255) NOT NULL,
   `email` varchar(30) NOT NULL,
   `role` varchar(30) NOT NULL,
-  `foto` varchar(255) DEFAULT NULL
+  `foto` varchar(255) DEFAULT NULL,
+  `status_aktif` enum('Aktif','Non Aktif') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `penyewa`
 --
 
-INSERT INTO `penyewa` (`id_penyewa`, `nama_penyewa`, `username`, `password`, `email`, `role`, `foto`) VALUES
-(1, 'Septian', 'septian', '123456', 'titikkoma219@gmail.com', 'Owner', NULL),
-(2, 'Coba', 'coba', '123456', 'coba@gmail.com', 'Owner', NULL),
-(3, 'Udin', 'udin', '123456', 'udin@gmail.com', 'Owner', NULL),
-(4, 'Asep', 'asep', '123456', 'asep@gmail.com', 'Penyewa', NULL),
-(5, 'ray', 'ray', '123456', 'septiannn123@gmail.com', 'Penyewa', NULL),
-(7, 'intan', 'kartika', '123456', 'kd11281991@gmail.com', 'Penyewa', NULL),
-(8, 'Andi', 'supri', '123456', 'supri@gmail.com', 'Penyewa', NULL),
-(13, 'ma\'ruf', 'terserah', 'password', 'mugi.gia@gmail.com', 'Penyewa', NULL),
-(14, 'apri', 'rian', '123456', 'septiannn123@gmail.com', 'Owner', NULL);
+INSERT INTO `penyewa` (`id_penyewa`, `nama_penyewa`, `username`, `password`, `email`, `role`, `foto`, `status_aktif`) VALUES
+(1, 'Septian', 'septian', '123456', 'titikkoma219@gmail.com', 'Owner', NULL, 'Aktif'),
+(2, 'Coba', 'coba', '123456', 'coba@gmail.com', 'Owner', NULL, 'Aktif'),
+(3, 'Udin', 'udin', '123456', 'udin@gmail.com', 'Owner', NULL, 'Aktif'),
+(4, 'Asep', 'asep', '123456', 'asep@gmail.com', 'Penyewa', NULL, 'Aktif'),
+(5, 'ray', 'ray', '123456', 'septiannn123@gmail.com', 'Penyewa', NULL, 'Aktif'),
+(7, 'intan', 'kartika', '123456', 'kd11281991@gmail.com', 'Penyewa', NULL, 'Aktif'),
+(8, 'Andi', 'supri', '123456', 'supri@gmail.com', 'Penyewa', NULL, 'Aktif'),
+(13, 'ma\'ruf', 'terserah', 'password', 'mugi.gia@gmail.com', 'Penyewa', NULL, 'Non Aktif'),
+(14, 'apri', 'rian', '123456', 'septiannn123@gmail.com', 'Owner', NULL, 'Aktif'),
+(15, 'contoh', 'contoh', '123456', 'septianyoga111@gmail.com', 'Penyewa', NULL, 'Non Aktif');
 
 -- --------------------------------------------------------
 
@@ -192,6 +202,7 @@ CREATE TABLE `pesanan` (
   `nominal` int(11) NOT NULL,
   `bukti_pembayaran` varchar(255) DEFAULT NULL,
   `metode_pembayaran` varchar(255) DEFAULT NULL,
+  `date_expired` timestamp NULL DEFAULT NULL,
   `alasan_tolak` varchar(255) DEFAULT NULL,
   `status_pesanan` enum('Belum Dibayar','Dibayar','Diapprov','Selesai','Ditolak') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -200,26 +211,18 @@ CREATE TABLE `pesanan` (
 -- Dumping data for table `pesanan`
 --
 
-INSERT INTO `pesanan` (`id_pesanan`, `id_penyewa`, `id_fasilitas`, `tanggal`, `nominal`, `bukti_pembayaran`, `metode_pembayaran`, `alasan_tolak`, `status_pesanan`) VALUES
-(5, 5, 1, '2023-05-31 08:00:00', 150000, NULL, NULL, NULL, 'Belum Dibayar'),
-(7, 3, 2, '2023-05-31 15:00:00', 200000, NULL, NULL, NULL, 'Belum Dibayar'),
-(8, 1, 1, '2023-05-31 18:00:00', 20000, NULL, NULL, NULL, 'Belum Dibayar'),
-(9, 1, 1, '2023-06-03 17:00:00', 20000, NULL, NULL, NULL, 'Belum Dibayar'),
-(10, 1, 1, '2023-06-03 22:00:00', 20000, NULL, NULL, NULL, 'Belum Dibayar'),
-(11, 13, 1, '2023-06-01 10:00:00', 20000, NULL, NULL, NULL, 'Belum Dibayar'),
-(12, 13, 1, '2023-06-01 11:00:00', 20000, NULL, NULL, NULL, 'Belum Dibayar'),
-(18, 1, 3, '2023-06-07 20:15:20', 300000, '1686241574_05d2b106f2ec81fc1dff.png', 'Non Tunai', NULL, 'Diapprov'),
-(19, 1, 3, '2023-06-08 22:19:56', 300000, '1686066916_48094767d427395ffa2c.png', 'Non Tunai', NULL, 'Diapprov'),
-(20, 1, 3, '2023-06-10 00:00:00', 300000, '1686218220_580ca988bc50406119ae.png', 'Non Tunai', NULL, 'Dibayar'),
-(21, 1, 3, '2023-06-09 00:00:00', 300000, '1686241118_d93fdaa4d5e4d0e6ec7f.png', 'Non Tunai', NULL, 'Dibayar'),
-(22, 1, 3, '2023-06-12 00:00:00', 300000, '1686241244_f4341f566baaba932d84.png', 'Non Tunai', NULL, 'Dibayar'),
-(24, 1, 2, '2023-06-09 12:00:00', 150000, NULL, 'Non Tunai', NULL, 'Belum Dibayar'),
-(25, 1, 3, '2023-06-11 00:00:00', 300000, '1686272528_ead31f9e65220dadbb90.png', 'Non Tunai', NULL, 'Dibayar'),
-(26, 1, 3, '2023-06-13 00:00:00', 300000, NULL, 'Non Tunai', NULL, 'Belum Dibayar'),
-(27, 1, 3, '2023-06-09 00:00:00', 300000, NULL, 'Non Tunai', NULL, 'Belum Dibayar'),
-(28, 1, 3, '2023-07-01 00:00:00', 300000, '1686384814_b0ba3aa63751c68ce5ca.png', 'Non Tunai', NULL, 'Diapprov'),
-(30, 1, 2, '2023-06-10 16:00:00', 150000, NULL, 'Non Tunai', NULL, 'Belum Dibayar'),
-(31, 1, 2, '2023-06-10 17:00:00', 150000, '1686386664_53c32a2456fa7cd3a293.png', 'Non Tunai', 'Screenshot palsu tidak masuk rekening', 'Ditolak');
+INSERT INTO `pesanan` (`id_pesanan`, `id_penyewa`, `id_fasilitas`, `tanggal`, `nominal`, `bukti_pembayaran`, `metode_pembayaran`, `date_expired`, `alasan_tolak`, `status_pesanan`) VALUES
+(3, 1, 1, '2023-06-14 09:00:00', 20000, NULL, 'Non Tunai', '2023-06-13 21:18:04', NULL, 'Belum Dibayar'),
+(4, 1, 3, '2023-06-15 00:00:00', 300000, '1686691337_dcafb40fc5fb9b149d89.png', 'Non Tunai', '2023-06-13 23:19:46', NULL, 'Diapprov'),
+(5, 1, 2, '2023-06-14 10:00:00', 150000, '1686691579_4ebbb8de09d336740b08.png', 'Non Tunai', '2023-06-13 23:26:11', 'Bukti pembayaran tidak jelas dan tidak masuk ke rekening saya', 'Ditolak'),
+(6, 1, 5, '2023-06-14 13:00:00', 200000, '1686718852_3bf4fc99e8ba4591a908.png', 'Non Tunai', '2023-06-14 07:00:40', NULL, 'Diapprov'),
+(7, 1, 3, '2023-06-17 00:00:00', 300000, NULL, 'Non Tunai', '2023-06-14 09:00:30', NULL, 'Belum Dibayar'),
+(8, 1, 3, '2023-06-14 00:00:00', 300000, '1686737972_636510b0e9c788e7fdcd.png', 'Non Tunai', '2023-06-14 12:19:25', NULL, 'Diapprov'),
+(9, 1, 3, '2023-06-17 00:00:00', 300000, NULL, 'Non Tunai', '2023-06-14 11:04:54', NULL, 'Belum Dibayar'),
+(13, 4, 3, '2023-06-16 00:00:00', 300000, '1686778110_2abf7a2259c4815e5786.png', 'Non Tunai', '2023-06-14 23:17:43', NULL, 'Dibayar'),
+(15, 4, 2, '2023-06-15 16:00:00', 150000, '1686782225_c29142d97c54b3b576bd.png', 'Non Tunai', '2023-06-15 00:22:12', 'Screen shot apaan nih ga jelas, mau nipu ya', 'Ditolak'),
+(16, 4, 3, '2023-06-18 00:00:00', 300000, NULL, 'Non Tunai', '2023-06-14 23:09:11', NULL, 'Belum Dibayar'),
+(18, 1, 3, '2023-06-16 00:00:00', 300000, NULL, 'Tunai', '2023-06-15 06:47:54', NULL, 'Belum Dibayar');
 
 --
 -- Indexes for dumped tables
@@ -293,13 +296,13 @@ ALTER TABLE `fasilitas`
 -- AUTO_INCREMENT for table `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `owner`
@@ -311,13 +314,13 @@ ALTER TABLE `owner`
 -- AUTO_INCREMENT for table `penyewa`
 --
 ALTER TABLE `penyewa`
-  MODIFY `id_penyewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_penyewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables

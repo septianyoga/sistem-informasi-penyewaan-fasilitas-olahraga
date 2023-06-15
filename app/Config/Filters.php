@@ -41,6 +41,7 @@ class Filters extends BaseConfig
                     '/verifikasi',
                     '/daftarFasilitas',
                     '/add',
+                    '/kategori',
                     '/kategori/*',
                     '/fasilitas/*',
                 ]
@@ -57,6 +58,7 @@ class Filters extends BaseConfig
                     '/daftar',
                     '/insertOwner',
                     '/addFasilitas',
+                    '/kategori',
                     '/kategori/*',
                     '/fasilitas/*',
                     '/sewa/*',
@@ -78,6 +80,7 @@ class Filters extends BaseConfig
                     '/insertOwner',
                     '/addFasilitas',
                     '/fasilitasTambah',
+                    '/kategori',
                     '/kategori/*',
                     '/fasilitas/*',
                     '/sewa/*',

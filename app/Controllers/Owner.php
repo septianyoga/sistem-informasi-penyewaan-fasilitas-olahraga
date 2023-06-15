@@ -32,8 +32,14 @@ class Owner extends BaseController
         $data = [
             'title'     => 'Dashboard Owner',
             'countFasilitas'    => $this->ModelFasilitas->totalFasilitas(),
+            'countAllPengunjung' => $this->ModelFasilitas->totalAllView(),
+            'countPesanan'  => $this->ModelFasilitas->totalPesanan(),
             'isi'       => 'owner/v_index'
         ];
+        echo '<pre>';
+        var_dump($data['countPesanan']);
+        echo '</pre>';
+        die();
         return view('layout/v_wrapper_admin', $data);
     }
 
@@ -471,5 +477,17 @@ class Owner extends BaseController
             'isi'       => 'owner/laporan/v_laporan'
         ];
         return view('layout/v_wrapper_admin', $data);
+    }
+
+    public function fasilitas_detail($id_owner)
+    {
+        $owner = $this->ModelOwner->getNama();
+        $data = [
+            'title' => "Fasilitas $owner[nama_penyewa]",
+            'penyewa' => $this->ModelHome->getPenyewa(session()->get('id')),
+            'data'  => $this->ModelOwner->getOwnerFasilitas($id_owner),
+            'isi'   => 'home/owner/v_fasilitas_owner'
+        ];
+        return view('layout/v_wrapper', $data);
     }
 }

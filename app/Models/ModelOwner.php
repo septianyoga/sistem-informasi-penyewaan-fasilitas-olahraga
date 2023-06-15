@@ -62,4 +62,27 @@ class ModelOwner extends Model
     {
         return $this->db->table('owner')->where('id_penyewa', session()->get('id'))->get()->getRowArray();
     }
+
+    public function getNama()
+    {
+        return $this->db->table('penyewa')->where('id_penyewa', session()->get('id'))->get()->getRowArray();
+    }
+
+    public function getLokasi()
+    {
+        return $this->db->table('owner')
+            ->join('penyewa', 'penyewa.id_penyewa = owner.id_penyewa')
+            ->where('owner.status', 'Verified')->get()->getResultArray();
+    }
+
+    public function getOwnerFasilitas($id_owner)
+    {
+        return $this->db->table('fasilitas')
+            ->join('kategori', 'kategori.id_kategori = fasilitas.id_kategori')
+            ->join('owner', 'owner.id_owner = fasilitas.id_owner')
+            ->where([
+                'fasilitas.id_owner' => $id_owner,
+                'fasilitas.status' => 'Tervalidasi'
+            ])->get()->getResultArray();
+    }
 }

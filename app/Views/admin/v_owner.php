@@ -38,10 +38,9 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>Username</th>
                                         <th>Email</th>
-                                        <th>Alamat</th>
                                         <th>No Telp</th>
+                                        <th>Status</th>
                                         <th class="text-center">Opsi</th>
                                     </tr>
                                 </thead>
@@ -54,13 +53,16 @@
                                             <tr>
                                                 <td><?= $no++ ?>.</td>
                                                 <td><?= $row['nama_penyewa'] ?></td>
-                                                <td><?= $row['username'] ?></td>
                                                 <td><?= $row['email'] ?></td>
-                                                <td><?= $row['alamat'] ?></td>
                                                 <td><?= $row['no_telp'] ?></td>
+                                                <td><?= $row['status'] != 'Non Aktif' ? '<span class="mt-2 badge badge-primary">Aktif</span>' : '<span class="mt-2 badge badge-light">Non Aktif</span>' ?></td>
                                                 <td class="text-center">
-                                                    <a href="#" class="btn btn-primary btn-sm mb-1">Detail</a>
-                                                    <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete<?= $row['id_owner'] ?>">Hapus</button>
+                                                    <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detail<?= $row['id_owner'] ?>">Detail</a>
+                                                    <?php if ($row['status'] != 'Non Aktif') { ?>
+                                                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete<?= $row['id_owner'] ?>">Non Aktif</button>
+                                                    <?php } else { ?>
+                                                        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#aktif<?= $row['id_owner'] ?>">Aktifkan</button>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                     <?php }
@@ -87,12 +89,57 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Yakin ingin menghapus data owner <b><?= $row['nama_penyewa'] ?>?</b></p>
-                    <p>Semua data fasilitas akan ikut terhapus.</p>
+                    <p>Yakin ingin menonaktifkan owner <b><?= $row['nama_penyewa'] ?>?</b></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="<?= base_url('admin/owner/' . $row['id_owner']) ?>" class="btn btn-danger">Hapus</a>
+                    <a href="<?= base_url('admin/owner/nonAktif/' . $row['id_owner']) ?>" class="btn btn-danger">Non Aktif</a>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+    <!-- aktif -->
+    <div class="modal fade bd-example-modal-lg" id="aktif<?= $row['id_owner'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Aktifkan Owner</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Yakin ingin mengaktifkan kembali owner <b><?= $row['nama_penyewa'] ?>?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="<?= base_url('admin/owner/aktif/' . $row['id_owner']) ?>" class="btn btn-success">Aktifkan</a>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+    <!-- detail Owner -->
+    <div class="modal fade bd-example-modal-lg" id="detail<?= $row['id_owner'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detail Owner</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Nama : <b><?= $row['nama_penyewa'] ?></b></p>
+                    <p>Username : <b><?= $row['username'] ?></b></p>
+                    <p>Email : <b><?= $row['email'] ?></b></p>
+                    <p>Alamat : <b><?= $row['alamat'] ?></b></p>
+                    <p>No Telp : <b><?= $row['no_telp'] ?></b></p>
+                    <p>Status : <?= $row['status'] ?></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
                 <?= form_close() ?>
             </div>

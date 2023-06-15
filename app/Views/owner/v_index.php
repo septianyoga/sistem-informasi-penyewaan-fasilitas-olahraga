@@ -34,6 +34,20 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div class="">
+                                        <p class="mb-2 text-secondary">Total Pengunjung</p>
+                                        <div class="d-flex flex-wrap justify-content-start align-items-center">
+                                            <h5 class="mb-0 font-weight-bold"><?= $countAllPengunjung['viewer'] ?></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="">
                                         <p class="mb-2 text-secondary">Total Fasilitas</p>
                                         <div class="d-flex flex-wrap justify-content-start align-items-center">
                                             <h5 class="mb-0 font-weight-bold"><?= $countFasilitas ?></h5>
@@ -48,25 +62,9 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div class="">
-                                        <p class="mb-2 text-secondary">Total Expenses</p>
+                                        <p class="mb-2 text-secondary">Total Pesanan</p>
                                         <div class="d-flex flex-wrap justify-content-start align-items-center">
-                                            <h5 class="mb-0 font-weight-bold">$12,789</h5>
-                                            <p class="mb-0 ml-3 text-success font-weight-bold">+2.67%</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <p class="mb-2 text-secondary">New Users</p>
-                                        <div class="d-flex flex-wrap justify-content-start align-items-center">
-                                            <h5 class="mb-0 font-weight-bold">13,984</h5>
-                                            <p class="mb-0 ml-3 text-danger font-weight-bold">-9.98%</p>
+                                            <h5 class="mb-0 font-weight-bold"><?= $countPesanan ?></h5>
                                         </div>
                                     </div>
                                 </div>

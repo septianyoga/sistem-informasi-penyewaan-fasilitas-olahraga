@@ -7,7 +7,10 @@
                 <div class="col-lg-12">
                     <!-- Section Tittle -->
                     <div class="section-tittle mt-5 ">
-                        <h2><b><a href="<?= base_url('#kategori') ?>"><i class="bi bi-chevron-left"></i> <?= $kategori ?></a></b></h2>
+                        <div class="section-tittle d-flex justify-content-between">
+                            <h3><b><a href="<?= base_url('/#gis') ?>"><i class="bi bi-chevron-left"></i> Fasilitas</a></b></h3>
+                            <h3 class="ml-4"><i class="bi bi-filter-right"></i> <?= $title ?></h3>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -17,16 +20,6 @@
                         <div class="col-lg-12">
                             <div class="blog_right_sidebar ">
                                 <aside class="search_widget ">
-                                    <form action="">
-                                        <div class="form-group">
-                                            <div class="input-group mb-3">
-                                                <input type="text" class="form-control" placeholder="Cari <?= $kategori ?>">
-                                                <div class="input-group-append">
-                                                    <button class="btns" type="submit"><i class="ti-search"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
                                 </aside>
                             </div>
                         </div>

@@ -74,4 +74,32 @@ class ModelFasilitas extends Model
         $owner = $this->db->table('owner')->where('id_penyewa', session()->get('id'))->get()->getRowArray();
         return $this->db->table('fasilitas')->where('id_owner', $owner['id_owner'])->countAllResults();
     }
+
+    public function nonAktifFasilitas($data)
+    {
+        $this->db->table('fasilitas')->where('id_fasilitas', $data['id_fasilitas'])->update($data);
+    }
+
+    public function viewer($id_fasilitas)
+    {
+        $fasilitas = $this->db->table('fasilitas')->where('id_fasilitas', $id_fasilitas)->get()->getRowArray();
+        $tambah = $fasilitas['viewer'] + 1;
+        $this->db->table('fasilitas')->where('id_fasilitas', $id_fasilitas)->update(['viewer' => $tambah]);
+    }
+
+    public function totalAllView()
+    {
+        $owner = $this->db->table('owner')->where('id_penyewa', session()->get('id'))->get()->getRowArray();
+        return $this->db->table('fasilitas')->selectSum('viewer')->where('id_owner', $owner['id_owner'])->get()->getRowArray();
+    }
+
+    public function totalPesanan()
+    {
+        $owner = $this->db->table('owner')->where('id_penyewa', session()->get('id'))->get()->getRowArray();
+        return $this->db->table('pesanan')
+            ->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas', 'right')
+            // ->join('owner', 'owner.id_owner = fasilitas.id_owner')
+            // ->where('fasilitas.id_owner', $owner['id_owner'])->get()->getResultArray();
+            ->where('fasilitas.id_owner', $owner['id_owner'])->get()->getResultArray();
+    }
 }

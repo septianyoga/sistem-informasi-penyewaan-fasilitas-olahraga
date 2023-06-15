@@ -30,6 +30,7 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/kategori', 'Kategori::search');
 $routes->get('/kategori/(:any)', 'Kategori::index/$1');
 
 $routes->get('/pesanan', 'Pesanan::index');
@@ -50,14 +51,19 @@ $routes->post('/add', 'Auth::insertPenyewa');
 $routes->get('/admin', 'Admin::index');
 $routes->get('/admin/owner', 'Admin::dataOwner');
 $routes->get('/admin/owner/(:num)', 'Admin::deleteOwner/$1');
+$routes->get('/admin/owner/nonAktif/(:num)', 'Admin::nonAktifOwner/$1');
+$routes->get('/admin/owner/aktif/(:num)', 'Admin::aktifOwner/$1');
 $routes->get('/admin/penyewa', 'Admin::dataPenyewa');
 $routes->get('/admin/penyewa/(:num)', 'Admin::hapusPenyewa/$1');
+$routes->get('/admin/penyewa/aktif/(:num)', 'Admin::aktifPenyewa/$1');
 $routes->get('/admin/verifOwner', 'Admin::verifOwner');
 $routes->get('/admin/verifOwner/(:num)', 'Admin::verified/$1');
 $routes->get('/admin/verifFasilitas', 'Admin::verifFasilitas');
 $routes->get('/admin/verifFasilitas/(:num)', 'Admin::detailFasilitas/$1');
 $routes->get('/admin/verifFasilitas/verif/(:num)', 'Admin::fasilitasVerified/$1');
 $routes->get('/admin/fasilitas', 'Admin::showFasilitas');
+$routes->get('/admin/fasilitas/nonAktif/(:num)', 'Admin::nonAktifFasilitas/$1');
+$routes->get('/admin/fasilitas/aktif/(:num)', 'Admin::aktifFasilitas/$1');
 
 $routes->get('/owner', 'Owner::index');
 $routes->get('/owner/fasilitas', 'Owner::showFasilitas');
@@ -74,7 +80,11 @@ $routes->post('/owner/pesanan/tolak', 'Owner::tolak_pesanan');
 $routes->get('/owner/laporan', 'Owner::laporan');
 
 $routes->get('/fasilitas/(:num)', 'Fasilitas::detail/$1');
+$routes->get('/fasilitas/owner/(:num)', 'Owner::fasilitas_detail/$1');
 
+$routes->get('/sewa', function () {
+    return redirect()->to('/');
+});
 $routes->get('/sewa/(:num)', 'Fasilitas::sewa/$1');
 $routes->post('/sewa/booking', 'Fasilitas::booking');
 $routes->post('/detail_pemesanan', 'Fasilitas::detail_pemesanan');

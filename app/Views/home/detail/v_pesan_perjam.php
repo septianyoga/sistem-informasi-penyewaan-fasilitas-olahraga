@@ -68,11 +68,14 @@
             initialView: 'timeGridWeek',
             businessHours: true,
             events: [
-                <?php foreach ($pesanan as $value) { ?> {
-                        title: 'Booked',
-                        start: '<?= strval($value['tanggal']) ?>'
-                    },
-                <?php } ?>
+                <?php foreach ($pesanan as $value) {
+                    if ($value['date_expired'] > date('Y-m-d H:i:s') || $value['status_pesanan'] == 'Diapprov') {
+                ?> {
+                            title: 'Booked',
+                            start: '<?= strval($value['tanggal']) ?>'
+                        },
+                <?php }
+                } ?>
             ],
             dateClick: function(info) {
                 tgl = info.dateStr;

@@ -32,6 +32,7 @@
                                         <th>Keterangan</th>
                                         <th>Harga</th>
                                         <th>Kategori</th>
+                                        <th>Status</th>
                                         <th class="text-center">Opsi</th>
                                     </tr>
                                 </thead>
@@ -44,8 +45,9 @@
                                             <td><?= $no++; ?></td>
                                             <td><?= $row['nama_fasilitas'] ?></td>
                                             <td><?= $row['keterangan'] ?></td>
-                                            <td><?= $row['harga'] ?> Per <?= $row['hargaper'] ?></td>
+                                            <td>Rp<?= number_format($row['harga'], 0, ",", ".") ?> Per <?= $row['hargaper'] ?></td>
                                             <td><?= $row['nama_kategori'] ?></td>
+                                            <td><?= $row['status'] ?></td>
                                             <td class="text-center">
                                                 <button class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#delete<?= $row['id_fasilitas'] ?>"><i class="bi bi-trash"></i></button>
                                                 <a href="<?= base_url('owner/fasilitas/' . $row['id_fasilitas']) ?>/show" class="btn btn-success btn-sm m-1"><i class="bi bi-eye"></i></a>

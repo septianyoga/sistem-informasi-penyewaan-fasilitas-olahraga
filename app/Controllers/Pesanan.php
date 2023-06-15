@@ -27,12 +27,16 @@ class Pesanan extends BaseController
         $data = [
             'title'         => 'Pesanan',
             'penyewa'       => $this->ModelHome->getPenyewa(session()->get('id')),
-            'belum'         => $this->ModelPesanan->getJumlah('Belum Dibayar'),
+            'belum'         => $this->ModelPesanan->getJumlahBelumBayar(),
             'dibayar'       => $this->ModelPesanan->getJumlah('Dibayar'),
-            'diverif'       => $this->ModelPesanan->getJumlah('Di Verifikasi'),
-            'selesai'       => $this->ModelPesanan->getJumlah('Selesai'),
+            'diverif'       => $this->ModelPesanan->getJumlahApprov(),
+            'ditolak'       => $this->ModelPesanan->getJumlah('Ditolak'),
+            'cancel'        => $this->ModelPesanan->getJumlahBelumSelesai(),
+            'selesai'       => $this->ModelPesanan->getSelesai(),
             'isi'           => 'home/pesanan/v_index'
         ];
+        // var_dump($data['selesai']);
+        // die();
         return view('layout/v_wrapper', $data);
     }
 
@@ -45,7 +49,11 @@ class Pesanan extends BaseController
                 'data'          => $this->ModelPesanan
                     ->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas', 'right')
                     ->join('owner', 'owner.id_owner = fasilitas.id_owner')
-                    ->where('pesanan.status_pesanan', 'Belum Dibayar')->findAll(),
+                    ->where([
+                        'pesanan.id_penyewa' => session()->get('id'),
+                        'date_expired >'  => date('Y-m-d H:i:s'),
+                        'pesanan.status_pesanan' => 'Belum Dibayar'
+                    ])->findAll(),
                 'isi'           => 'home/pesanan/v_lihat'
             ];
             // var_dump($data['data']);
@@ -57,7 +65,24 @@ class Pesanan extends BaseController
                 'data'          => $this->ModelPesanan
                     ->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')
                     ->join('owner', 'owner.id_owner = fasilitas.id_owner')
-                    ->where('pesanan.status_pesanan', 'Dibayar')->findAll(),
+                    ->where([
+                        'pesanan.id_penyewa' => session()->get('id'),
+                        'pesanan.status_pesanan' => 'Dibayar'
+                    ])->findAll(),
+                'isi'           => 'home/pesanan/v_lihat'
+            ];
+        } elseif ($jenis == 'ditolak') {
+            $data = [
+                'title'         => 'Ditolak',
+                'penyewa'       => $this->ModelHome->getPenyewa(session()->get('id')),
+                'data'          => $this->ModelPesanan
+                    ->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')
+                    ->join('owner', 'owner.id_owner = fasilitas.id_owner')
+                    ->where([
+                        'pesanan.id_penyewa' => session()->get('id'),
+                        // 'tanggal <'  => date('Y-m-d H:i:s'),
+                        'pesanan.status_pesanan' => 'Ditolak'
+                    ])->findAll(),
                 'isi'           => 'home/pesanan/v_lihat'
             ];
         } else {
@@ -67,7 +92,10 @@ class Pesanan extends BaseController
                 'data'          => $this->ModelPesanan
                     ->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')
                     ->join('owner', 'owner.id_owner = fasilitas.id_owner')
-                    ->where('pesanan.status_pesanan', 'Belum Dibayar')->findAll(),
+                    ->where([
+                        'pesanan.id_penyewa' => session()->get('id'),
+                        'pesanan.status_pesanan', 'Diapprov'
+                    ])->findAll(),
                 'isi'           => 'home/pesanan/v_lihat'
             ];
         }

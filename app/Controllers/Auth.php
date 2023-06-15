@@ -62,6 +62,10 @@ class Auth extends BaseController
             // cek
             $cek = $this->ModelAuth->cekDataPenyewa($username_email, $password);
             if ($cek) {
+                if ($cek['status_aktif'] == 'Non Aktif') {
+                    session()->setFlashdata('pesan', 'Akun sudah tidak aktif!');
+                    return redirect()->to(base_url('login'));
+                }
                 session()->set('log', true);
                 session()->set('id', $cek['id_penyewa']);
                 session()->set('nama', $cek['nama_penyewa']);

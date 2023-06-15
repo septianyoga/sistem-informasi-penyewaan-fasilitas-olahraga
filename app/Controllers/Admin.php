@@ -3,16 +3,18 @@
 namespace App\Controllers;
 
 use App\Models\ModelAdmin;
+use App\Models\ModelFasilitas;
 
 class Admin extends BaseController
 {
 
-    private $ModelAdmin;
+    private $ModelAdmin, $ModelFasilitas;
 
     public function __construct()
     {
         helper('form');
         $this->ModelAdmin = new ModelAdmin();
+        $this->ModelFasilitas = new ModelFasilitas();
     }
 
     public function index()
@@ -118,10 +120,66 @@ class Admin extends BaseController
     public function hapusPenyewa($id)
     {
         $data = [
-            'id_penyewa' => $id
+            'id_penyewa' => $id,
+            'status_aktif' => 'Non Aktif'
         ];
-        $this->ModelAdmin->db->table('penyewa')->where('id_penyewa', $id)->delete($data);
-        session()->setFlashdata('pesan', 'Hapus Berhasil!');
+        $this->ModelAdmin->db->table('penyewa')->where('id_penyewa', $id)->update($data);
+        session()->setFlashdata('pesan', 'Non Aktif Berhasil!');
+        return redirect()->to(base_url('admin/penyewa'));
+    }
+
+    public function nonAktifOwner($id)
+    {
+        $data = [
+            'id_owner' => $id,
+            'status' => 'Non Aktif'
+        ];
+        $this->ModelAdmin->db->table('owner')->where('id_owner', $id)->update($data);
+        session()->setFlashdata('pesan', 'Non Aktif Berhasil!');
+        return redirect()->to(base_url('admin/owner'));
+    }
+
+    public function aktifOwner($id)
+    {
+        $data = [
+            'id_owner' => $id,
+            'status' => 'Verified'
+        ];
+        $this->ModelAdmin->db->table('owner')->where('id_owner', $id)->update($data);
+        session()->setFlashdata('pesan', 'Berhasil Mengaktifkan Kembali Owner!');
+        return redirect()->to(base_url('admin/owner'));
+    }
+
+    public function nonAktifFasilitas($id)
+    {
+        $data = [
+            'id_fasilitas' => $id,
+            'status' => 'Non Aktif'
+        ];
+        $this->ModelFasilitas->nonAktifFasilitas($data);
+        session()->setFlashdata('pesan', 'Non Aktif Berhasil!');
+        return redirect()->to(base_url('admin/fasilitas'));
+    }
+
+    public function aktifFasilitas($id)
+    {
+        $data = [
+            'id_fasilitas' => $id,
+            'status' => 'Tervalidasi'
+        ];
+        $this->ModelFasilitas->nonAktifFasilitas($data);
+        session()->setFlashdata('pesan', 'Berhasil Mengaktifkan Kembali Fasilitas!');
+        return redirect()->to(base_url('admin/fasilitas'));
+    }
+
+    public function aktifPenyewa($id)
+    {
+        $data = [
+            'id_penyewa' => $id,
+            'status_aktif' => 'Aktif'
+        ];
+        $this->ModelAdmin->db->table('penyewa')->where('id_penyewa', $id)->update($data);
+        session()->setFlashdata('pesan', 'Berhasil Mengaktifkan Kembali Penyewa!');
         return redirect()->to(base_url('admin/penyewa'));
     }
 }

@@ -26,4 +26,16 @@ class Kategori extends BaseController
         ];
         return view('layout/v_wrapper', $data);
     }
+
+    public function search()
+    {
+        $data = [
+            'title' => "Kategori",
+            'data'  => $this->ModelHome->searchFasilitas($this->request->getVar('kategori'), $this->request->getVar('kecamatan')),
+            'penyewa' => $this->ModelHome->getPenyewa(session()->get('id')),
+            'kategori' => $this->request->getVar('kategori'),
+            'isi'   => 'home/kategori/v_index'
+        ];
+        return view('layout/v_wrapper', $data);
+    }
 }

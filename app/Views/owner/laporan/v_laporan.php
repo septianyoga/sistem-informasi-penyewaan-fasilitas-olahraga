@@ -44,8 +44,8 @@
                                             <td><?= $row['nama_fasilitas'] ?></td>
                                             <td><?= $row['harga'] ?></td>
                                             <td>
-                                                <?php if ($row['status_pesanan'] == 'Belum Dibayar' && date('Y-m-d H:i:s') > $row['tanggal']) { ?>
-                                                    <span class="mt-2 badge badge-danger">Cancel</span>
+                                                <?php if ($row['status_pesanan'] == 'Belum Dibayar' && date('Y-m-d H:i:s') > $row['date_expired']) { ?>
+                                                    <span class="mt-2 badge badge-danger">Expired</span>
                                                 <?php } elseif ($row['status_pesanan'] == 'Belum Dibayar' && date('Y-m-d H:i:s') <= $row['tanggal']) { ?>
                                                     <span class="mt-2 badge badge-info">Menunggu Pembayaran</span>
                                                 <?php } elseif ($row['status_pesanan'] == 'Diapprov' && date('Y-m-d H:i:s' > $row['tanggal'])) { ?>

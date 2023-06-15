@@ -47,10 +47,11 @@ class ModelAdmin extends Model
     public function getAllFasilitasVerified()
     {
         return $this->db->table('fasilitas')
+            ->select('fasilitas.id_fasilitas as id_fasilitas, fasilitas.nama_fasilitas as nama_fasilitas, fasilitas.harga as harga_fasilitas, fasilitas.hargaper, fasilitas.status as status_fasilitas')
             ->join('owner', 'owner.id_owner = fasilitas.id_owner', 'left')
             ->where([
                 'owner.status' => 'Verified',
-                'fasilitas.status' => 'Tervalidasi'
+                'fasilitas.status !=' => 'Belum Tervalidasi'
             ])
             ->get()->getResultArray();
     }
