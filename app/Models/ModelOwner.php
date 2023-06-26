@@ -70,9 +70,12 @@ class ModelOwner extends Model
 
     public function getLokasi()
     {
-        return $this->db->table('owner')
-            ->join('penyewa', 'penyewa.id_penyewa = owner.id_penyewa')
-            ->where('owner.status', 'Verified')->get()->getResultArray();
+        return $this->db->table('fasilitas')
+            ->join('owner', 'owner.id_owner = fasilitas.id_owner')
+            ->where([
+                'owner.status' => 'Verified',
+                'fasilitas.status' => 'Tervalidasi',
+            ])->get()->getResultArray();
     }
 
     public function getOwnerFasilitas($id_owner)

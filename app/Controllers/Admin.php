@@ -21,8 +21,14 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Admin',
+            'totalOwner'    =>  $this->ModelAdmin->countOwner(),
+            'totalPenyewa'    =>  $this->ModelAdmin->countPenyewa(),
+            'validOwner'    =>  $this->ModelAdmin->validOwner(),
+            'validFasilitas'    =>  $this->ModelAdmin->validFasilitas(),
             'isi'   => 'admin/v_index'
         ];
+        // var_dump($data['totalOwner']);
+        // die();
         return view('layout/v_wrapper_admin', $data);
     }
 
@@ -53,6 +59,28 @@ class Admin extends BaseController
             'status'    => 'Verified'
         ];
 
+        $owner = $this->ModelAdmin->getOwner($id_owner);
+
+        $email = \Config\Services::email();
+
+        $fromEmail = 'ssc.sipfor@gmail.com';
+
+        $email->setFrom($fromEmail);
+        $emailUser = $owner['email'];
+        $toFrom = $emailUser;
+        $email->setTo($toFrom);
+        $subject = 'Verifikasi Owner';
+        $email->setSubject($subject);
+        $body = "
+            <h3>Akun anda telah berhasil di verifikasi. Silahkan kelola lebih lanjut</h3>
+            <p>
+            <a href='" . base_url('owner/fasilitas') . "'>Link disini</a>
+            </p>
+            ";
+        $message = $body;
+        $email->setMessage($message);
+        $email->send();
+
         $this->ModelAdmin->verif($data);
         session()->setFlashdata('pesan', 'Verifikasi Berhasil!');
         return redirect()->to(base_url('admin/owner'));
@@ -77,6 +105,29 @@ class Admin extends BaseController
             'id_fasilitas'  => $id,
             'status'        => 'Tervalidasi'
         ];
+        $owner = $this->ModelAdmin->getFasilitasById($id);
+
+        $emailOwner = $this->ModelAdmin->getOwner($owner['id_owner']);
+
+        $email = \Config\Services::email();
+
+        $fromEmail = 'ssc.sipfor@gmail.com';
+
+        $email->setFrom($fromEmail);
+        $emailUser = $emailOwner['email'];
+        $toFrom = $emailUser;
+        $email->setTo($toFrom);
+        $subject = 'Verifikasi Fasilitas';
+        $email->setSubject($subject);
+        $body = "
+            <h3>Fasilitas anda telah berhasil di verifikasi. Silahkan kelola lebih lanjut</h3>
+            <p>
+            <a href='" . base_url('owner/fasilitas') . "'>Link disini</a>
+            </p>
+            ";
+        $message = $body;
+        $email->setMessage($message);
+        $email->send();
         $this->ModelAdmin->ubahStatusFasilitas($data);
         session()->setFlashdata('pesan', 'Validasi Berhasil!');
         return redirect()->to(base_url('admin/fasilitas'));

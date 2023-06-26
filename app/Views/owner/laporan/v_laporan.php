@@ -7,6 +7,14 @@
                         <div class="header-title">
                             <h4 class="card-title"><?= $title ?></h4>
                         </div>
+                        <button class="btn btn-primary text-end print" onclick="window.print()">Cetak</button>
+                        <style>
+                            @media print {
+                                .print {
+                                    display: none;
+                                }
+                            }
+                        </style>
                     </div>
                     <div class="card-body">
                         <?php
@@ -30,7 +38,7 @@
                                         <th>Harga</th>
                                         <th>Status</th>
                                         <th>Tanggal</th>
-                                        <th class="text-center">Opsi</th>
+                                        <th class="text-center print">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,7 +67,7 @@
                                                 <?php } ?>
                                             </td>
                                             <td><?= $row['tanggal'] ?></td>
-                                            <td>
+                                            <td class="print">
                                                 <a href="<?= base_url('owner/pesanan/' . $row['id_pesanan']) ?>" class="btn btn-primary btn-sm">Detail</a>
                                             </td>
                                         </tr>

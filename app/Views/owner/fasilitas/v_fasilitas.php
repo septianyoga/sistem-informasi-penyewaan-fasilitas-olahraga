@@ -70,7 +70,7 @@
     <div class="modal-dialog modal-lg ">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Tambah Fasilitas</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -102,6 +102,20 @@
                 <div class="form-group">
                     <label for="keterangan">Keterangan</label>
                     <textarea class="form-control" name="keterangan" id="keterangan" rows="2"><?= old('keterangan') ?></textarea>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="harga">Alamat :</label>
+                            <input type="text" name="alamat" class="form-control" id="harga" value="<?= old('harga') ?>">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="koordinat">Koordinat :</label>
+                            <input type="text" name="koordinat" class="form-control" id="koordinat" value="<?= old('koordinat') ?>">
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col">

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ModelAdmin;
 use App\Models\ModelFasilitas;
 use App\Models\ModelHome;
 use App\Models\ModelPesanan;
@@ -9,7 +10,7 @@ use App\Models\ModelPesanan;
 class Fasilitas extends BaseController
 {
 
-    private $ModelFasilitas, $ModelHome, $ModelPesanan;
+    private $ModelFasilitas, $ModelHome, $ModelPesanan, $ModelAdmin;
 
     public function __construct()
     {
@@ -17,6 +18,8 @@ class Fasilitas extends BaseController
         $this->ModelFasilitas = new ModelFasilitas();
         $this->ModelHome = new ModelHome();
         $this->ModelPesanan = new ModelPesanan();
+        $this->ModelAdmin = new ModelAdmin();
+
         date_default_timezone_set('Asia/Jakarta');
     }
 
@@ -61,6 +64,10 @@ class Fasilitas extends BaseController
         if ($idOwner != null) {
             $fasilitas = $this->ModelFasilitas->getFasilitas($idOwner['id_owner']);
             if ($fasilitas != null) {
+                // cek status fasilitas apakah sudah di verif
+                if ($fasilitas['status'] == 'Tervalidasi') {
+                    return redirect()->to(base_url('owner'));
+                }
                 $foto = $this->ModelFasilitas->getFoto($fasilitas['id_fasilitas']);
             }
         } else {
@@ -88,6 +95,8 @@ class Fasilitas extends BaseController
     {
         $nama = $this->request->getPost('nama');
         $keterangan = $this->request->getPost('keterangan');
+        $alamat = $this->request->getPost('alamat');
+        $koordinat = $this->request->getPost('koordinat');
         $harga = $this->request->getPost('harga');
         $hargaper = $this->request->getPost('hargaper');
         $id_kategori = $this->request->getPost('kategori');
@@ -104,6 +113,20 @@ class Fasilitas extends BaseController
             ],
             'keterangan' => [
                 'label' => 'Keterangan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diisi.'
+                ],
+            ],
+            'alamat' => [
+                'label' => 'Alamat',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} wajib diisi.'
+                ],
+            ],
+            'koordinat' => [
+                'label' => 'Koordinat',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} wajib diisi.'
@@ -151,6 +174,8 @@ class Fasilitas extends BaseController
                 'nama_fasilitas'    => $nama,
                 'keterangan'        => $keterangan,
                 'id_kategori'       => $id_kategori,
+                'alamat'            => $alamat,
+                'koordinat'         => $koordinat,
                 'harga'             => $harga,
                 'hargaper'          => $hargaper,
                 'id_owner'          => $dataOwner['id_owner'],
@@ -175,7 +200,25 @@ class Fasilitas extends BaseController
                 $this->ModelFasilitas->insertFoto($datafoto);
                 $img->move(ROOTPATH . 'public/foto_fasilitas', $nama);
             }
+            $email = \Config\Services::email();
 
+            $fromEmail = 'ssc.sipfor@gmail.com';
+
+            $email->setFrom($fromEmail);
+            $emailUser = $this->ModelAdmin->getEmailAdmin();
+            $toFrom = $emailUser['email'];
+            $email->setTo($toFrom);
+            $subject = 'Verifikasi Owner dan Fasilitas Baru';
+            $email->setSubject($subject);
+            $body = "
+            <h3>Ada Pendaftaran Owner dan Fasilitas yang harus kamu validasi</h3>
+            <p>
+            <a href='" . base_url('admin/owner') . "'>Link disini</a>
+            </p>
+            ";
+            $message = $body;
+            $email->setMessage($message);
+            $email->send();
             session()->setFlashdata('pesan', 'Data Berhasil Disimpan!');
             return redirect()->to(base_url('daftarFasilitas'));
         } else {

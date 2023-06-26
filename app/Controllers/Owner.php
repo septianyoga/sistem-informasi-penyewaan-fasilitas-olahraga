@@ -36,10 +36,10 @@ class Owner extends BaseController
             'countPesanan'  => $this->ModelFasilitas->totalPesanan(),
             'isi'       => 'owner/v_index'
         ];
-        echo '<pre>';
-        var_dump($data['countPesanan']);
-        echo '</pre>';
-        die();
+        // echo '<pre>';
+        // var_dump($data['countPesanan']);
+        // echo '</pre>';
+        // die();
         return view('layout/v_wrapper_admin', $data);
     }
 
@@ -48,7 +48,7 @@ class Owner extends BaseController
         $nama = $this->request->getPost('nama');
         $email = $this->request->getPost('email');
         $alamat = $this->request->getPost('alamat');
-        $lokasi = $this->request->getPost('lokasi');
+        // $lokasi = $this->request->getPost('lokasi');
         $no_telp = $this->request->getPost('no_telp');
         $jenis_rek = $this->request->getPost('jenis_rek');
         $no_rek = $this->request->getPost('no_rek');
@@ -77,13 +77,13 @@ class Owner extends BaseController
                     'required' => '{field} wajib diisi.'
                 ],
             ],
-            'lokasi' => [
-                'label' => 'Lokasi',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} wajib diisi.'
-                ],
-            ],
+            // 'lokasi' => [
+            //     'label' => 'Lokasi',
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => '{field} wajib diisi.'
+            //     ],
+            // ],
             'no_telp' => [
                 'label' => 'Nomor Telepon',
                 'rules' => 'required',
@@ -107,7 +107,7 @@ class Owner extends BaseController
                 'id_penyewa'        => session()->get('id'),
                 'no_telp'           => $no_telp,
                 'alamat'            => $alamat,
-                'lokasi'            => $lokasi,
+                // 'lokasi'            => $lokasi,
                 'jenis_rek'         => $jenis_rek,
                 'no_rek'            => $no_rek,
                 'no_dana_shopee'    => $no_dana_shopee,
@@ -143,6 +143,8 @@ class Owner extends BaseController
         $keterangan = $this->request->getPost('keterangan');
         $harga = $this->request->getPost('harga');
         $hargaper = $this->request->getPost('hargaper');
+        $alamat = $this->request->getPost('alamat');
+        $koordinat = $this->request->getPost('koordinat');
         $id_kategori = $this->request->getPost('kategori');
         $foto = $this->request->getFiles();
 
@@ -205,6 +207,8 @@ class Owner extends BaseController
                 'keterangan'        => $keterangan,
                 'id_kategori'       => $id_kategori,
                 'harga'             => $harga,
+                'alamat'            => $alamat,
+                'koordinat'         => $koordinat,
                 'hargaper'          => $hargaper,
                 'id_owner'          => $dataOwner['id_owner'],
                 'status'            => 'Belum Tervalidasi',
@@ -483,7 +487,7 @@ class Owner extends BaseController
     {
         $owner = $this->ModelOwner->getNama();
         $data = [
-            'title' => "Fasilitas $owner[nama_penyewa]",
+            'title' => "Fasilitas ",
             'penyewa' => $this->ModelHome->getPenyewa(session()->get('id')),
             'data'  => $this->ModelOwner->getOwnerFasilitas($id_owner),
             'isi'   => 'home/owner/v_fasilitas_owner'

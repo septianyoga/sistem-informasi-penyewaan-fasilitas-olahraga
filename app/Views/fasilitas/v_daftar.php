@@ -68,12 +68,12 @@
                             <input class="form-control valid" name="alamat" id="alamat" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Alamat Wajib Diisi'" placeholder="Masukan Alamat" value="<?= ($dataOwner != null) ? $dataOwner['alamat'] : old('alamat') ?>" <?= ($dataOwner != null) ? 'readonly' : '' ?>>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <!-- <div class="col-sm-6">
                         <div class="form-group">
                             <label for="lokasi">Lokasi Koordinat GPS <span class="text-danger">*</span></label>
                             <input class="form-control valid" name="lokasi" id="lokasi" type="number" placeholder="Masukan Koordinat" value="<?= ($dataOwner != null) ? $dataOwner['lokasi'] :  old('lokasi') ?>" <?= ($dataOwner != null) ? 'readonly' : '' ?> autocomplete="off">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="no_telp">Nomor Telepon <span class="text-danger">*</span></label>

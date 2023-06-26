@@ -80,6 +80,18 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
+                                <label for="alamat">Alamat <span class="text-danger">*</span></label>
+                                <input class="form-control valid" name="alamat" id="alamat" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukan Alamat'" placeholder="Masukan Alamat" value="<?= old('alamat') ?>">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="koordinat">Koordinat <span class="text-danger">*</span></label>
+                                <input class="form-control valid" name="koordinat" id="koordinat" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukan Koordinat'" placeholder="Masukan Koordinat" value="<?= old('koordinat') ?>">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
                                 <label for="harga">Harga <span class="text-danger">*</span></label>
                                 <input class="form-control valid" name="harga" id="harga" type="number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukan Harga'" placeholder="Masukan Harga" value="<?= old('harga') ?>">
                             </div>

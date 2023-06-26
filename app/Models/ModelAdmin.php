@@ -82,7 +82,7 @@ class ModelAdmin extends Model
 
     public function getOwner($id_owner)
     {
-        return $this->db->table('owner')->where('id_owner', $id_owner)->get()->getRowArray();
+        return $this->db->table('owner')->join('penyewa', 'penyewa.id_penyewa = owner.id_penyewa')->where('id_owner', $id_owner)->get()->getRowArray();
     }
 
     public function ubahStatus($data)
@@ -102,5 +102,30 @@ class ModelAdmin extends Model
             return $this->db->table('foto')->where('id_fasilitas', $fasilitas['id_fasilitas'])->get()->getResultArray();
         }
         return null;
+    }
+
+    public function countOwner()
+    {
+        return $this->db->table('owner')->where('status', 'Verified')->countAllResults();
+    }
+
+    public function countPenyewa()
+    {
+        return $this->db->table('penyewa')->where('status_aktif', 'Aktif')->countAllResults();
+    }
+
+    public function validOwner()
+    {
+        return $this->db->table('owner')->where('status !=', 'Verified')->countAllResults();
+    }
+
+    public function validFasilitas()
+    {
+        return $this->db->table('fasilitas')->where('status', 'Belum Tervalidasi')->countAllResults();
+    }
+
+    public function getEmailAdmin()
+    {
+        return $this->db->table('admin')->orderBy('id_admin', 'DESC')->get()->getRowArray();
     }
 }

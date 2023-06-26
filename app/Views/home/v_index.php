@@ -193,13 +193,13 @@
         // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
     <?php foreach ($lokasi as $key => $value) { ?>
-        L.marker([<?= $value['lokasi'] ?>]).addTo(map)
+        L.marker([<?= $value['koordinat'] ?>]).addTo(map)
             .on('click', function() {
                 Swal.fire({
-                    icon: 'info',
-                    title: 'Nama Pemilik : <?= $value['nama_penyewa'] ?>',
-                    html: 'Alamat Fasilitas : <?= $value['alamat'] ?> <br> No Telp: <?= $value['no_telp'] ?> ',
-                    footer: '<a href="<?= base_url('fasilitas/owner/' . $value['id_owner']) ?>" class="text-hijau">Lihat Detail</a>'
+                    imageUrl: '<?= base_url('foto_fasilitas/' . $value['thumnail']) ?>',
+                    title: 'Nama Fasilitas : <?= $value['nama_fasilitas'] ?>',
+                    html: 'Keterangan Fasilitas : <?= $value['keterangan'] ?> <br> Alamat: <?= $value['alamat'] ?> ',
+                    footer: '<a href="<?= base_url('fasilitas/' . $value['id_fasilitas']) ?>" class="text-hijau">Lihat Detail</a>'
                 })
             })
         // .openPopup();
