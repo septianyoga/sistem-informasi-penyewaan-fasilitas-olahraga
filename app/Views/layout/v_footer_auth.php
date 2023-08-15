@@ -27,7 +27,7 @@
 <script src="<?= base_url() ?>/template/backend/html/assets/js/slider.js"></script>
 
 <!-- Emoji picker -->
-<script src="<?= base_url() ?>/template/backend/html/assets/vendor/emoji-picker-element/index.js" type="module"></script>
+<script src="<?= base_url() ?>/template/backend/html/assets/vendorr/emoji-picker-element/index.js" type="module"></script>
 
 
 <!-- app JavaScript -->
