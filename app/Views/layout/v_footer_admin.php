@@ -71,6 +71,16 @@
         });
     }, 6000);
 </script>
+<script>
+    window.onload = function() {
+        document.getElementById("loading-overlay").style.display = "none";
+    }
+</script>
+<script>
+    function showLoading() {
+        document.getElementById("loading-overlay").style.display = "block";
+    }
+</script>
 </body>
 
 </html>

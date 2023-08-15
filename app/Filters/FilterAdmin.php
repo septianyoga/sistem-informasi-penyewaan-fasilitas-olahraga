@@ -13,7 +13,7 @@ class FilterAdmin implements FilterInterface
         // Do something here
         if (session()->get('role') == '') {
             session()->setFlashdata('pesan', 'Anda belum login. Silahkan login terlebih dahulu!!');
-            return redirect()->to(base_url('login'));
+            return redirect()->to(base_url('auth'));
         }
     }
 

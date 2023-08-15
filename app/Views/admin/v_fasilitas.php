@@ -57,7 +57,7 @@
                                             <td><?= $row['harga_fasilitas'] ?> / <?= $row['hargaper'] ?></td>
                                             <td><?= $row['status_fasilitas'] == 'Tervalidasi' ? '<span class="mt-2 badge badge-primary">Aktif</span>' : '<span class="mt-2 badge badge-light">Non Aktif</span>' ?></td>
                                             <td class="text-center">
-                                                <a href="<?= base_url('admin/verifFasilitas/' . $row['id_fasilitas']) ?>" class="btn btn-sm btn-primary ">Detail</a>
+                                                <a href="<?= base_url('admin/verifFasilitas/' . $row['id_fasilitas']) ?>" class="btn btn-sm btn-primary " onclick="showLoading()">Detail</a>
                                                 <?php if ($row['status_fasilitas'] == 'Tervalidasi') { ?>
                                                     <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#non<?= $row['id_fasilitas'] ?>">Non Aktif</a>
                                                 <?php } else { ?>

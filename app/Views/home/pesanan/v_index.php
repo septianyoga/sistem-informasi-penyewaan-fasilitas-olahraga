@@ -80,7 +80,7 @@
                                                                 </div>
                                                             </div>
                                                             <span>Tanggal Pemesanan : </span>
-                                                            <p><?= $row['tanggal'] ?></p>
+                                                            <p><?= date('l, d m Y H:i', strtotime($row['tanggal'])) ?></p>
                                                             <p>Status Pesanan :
                                                                 <?php if ($row['status_pesanan'] == 'Belum Dibayar') { ?>
                                                                     Expired

@@ -41,7 +41,7 @@ class ModelHome extends Model
         return $this->db->table('fasilitas')
             ->join('kategori', 'kategori.id_kategori = fasilitas.id_kategori')
             ->join('owner', 'owner.id_owner = fasilitas.id_owner')
-            ->like('alamat', $kecamatan)
+            ->like('fasilitas.alamat', $kecamatan)
             ->where([
                 'nama_kategori' => $kategori,
                 'fasilitas.status' => 'Tervalidasi'
