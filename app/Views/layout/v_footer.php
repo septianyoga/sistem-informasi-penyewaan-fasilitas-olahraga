@@ -22,6 +22,7 @@
         </div>
     </div>
 </section>
+
 <footer>
     <div class="footer-wrapper">
         <!-- footer-bottom -->
