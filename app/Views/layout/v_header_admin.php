@@ -45,7 +45,7 @@
             color: azure !important;
         }
 
-        #loading-overlay {
+        /* #loading-overlay {
             display: block;
             position: fixed;
             top: 0;
@@ -77,7 +77,7 @@
             100% {
                 transform: rotate(360deg);
             }
-        }
+        } */
     </style>
 </head>
 
@@ -86,6 +86,6 @@
         <div id="loading-center">
         </div>
     </div> -->
-    <div id="loading-overlay">
+    <!-- <div id="loading-overlay">
         <div class="loader"></div>
-    </div>
+    </div> -->
