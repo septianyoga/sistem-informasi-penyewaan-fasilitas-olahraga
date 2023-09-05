@@ -110,6 +110,7 @@ class Pesanan extends BaseController
             'data'          => $this->ModelPesanan
                 ->join('fasilitas', 'fasilitas.id_fasilitas = pesanan.id_fasilitas')
                 ->join('owner', 'owner.id_owner = fasilitas.id_owner')
+                ->join('penyewa', 'penyewa.id_penyewa = owner.id_penyewa')
                 ->find($id),
             'isi'           => 'home/bayar/v_lanjut_bayar'
         ];

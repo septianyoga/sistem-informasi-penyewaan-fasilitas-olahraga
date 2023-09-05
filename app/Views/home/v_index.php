@@ -76,7 +76,7 @@
                 <div class="d-flex flex-row flex-nowrap overflow-auto p-3" style="overflow: auto !important; width: 100%;">
                     <div class="col-12 col-md-6 col-lg-4">
                         <a href="<?= base_url('kategori/Futsal') ?>">
-                            <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; justify-content: space-evenly;">
+                            <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; height: 100%; justify-content: space-evenly;">
                                 <img src="<?= base_url() ?>/asset/img/2.png" style=" width: 40%; max-width: 70%; min-width: 40%;" alt="">
                                 <h1 class="mt-3" style="font-weight: 30px !important; font-size: 2em; font-family: fantasy;">FUTSAL</h1>
                             </div>
@@ -85,7 +85,7 @@
                     <!-- Single -->
                     <div class="col-12 col-md-6 col-lg-4">
                         <a href="<?= base_url('kategori/Badminton') ?>">
-                            <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; width: 100%; justify-content: space-evenly;">
+                            <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; height: 100%; justify-content: space-evenly;">
                                 <img src="<?= base_url() ?>/asset/img/3.png" style=" width: 46%; max-width: 70%; min-width: 40%;" alt="">
                                 <h1 class="mt-3 pr-5" style="font-weight: 30px !important; font-size: 2em; font-family: fantasy;">BADMINTON</h1>
                             </div>
@@ -94,7 +94,7 @@
                     <!-- Single -->
                     <div class="col-12 col-md-6 col-lg-4">
                         <a href="<?= base_url('kategori/Basket') ?>">
-                            <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; justify-content: space-evenly;">
+                            <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; height: 100%; justify-content: space-evenly;">
                                 <img src="<?= base_url() ?>/asset/img/basket.png" style=" width: 48%; max-width: 70%; min-width: 40%;" alt="">
                                 <h1 class="mt-3" style="font-weight: 30px !important; font-size: 2em; font-family: fantasy;">Basket</h1>
                             </div>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
                         <a href="<?= base_url('kategori/Tenis') ?>">
-                            <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; justify-content: space-evenly;">
+                            <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; height: 100%; justify-content: space-evenly;">
                                 <img src="<?= base_url() ?>/asset/img/4.png" style=" width: 39%; max-width: 70%; min-width: 40%;" alt="">
                                 <h1 class="mt-3" style="font-weight: 30px !important; font-size: 2em; font-family: fantasy;">TENIS</h1>
                             </div>
@@ -111,7 +111,7 @@
                     <!-- Single -->
                     <div class="col-12 col-md-6 col-lg-4">
                         <a href="<?= base_url('kategori/GYM') ?>">
-                            <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; justify-content: space-evenly;">
+                            <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; height: 100%; justify-content: space-evenly;">
                                 <img src="<?= base_url() ?>/asset/img/5.png" style=" width: 48%; max-width: 70%; min-width: 40%;" alt="">
                                 <h1 class="mt-3" style="font-weight: 30px !important; font-size: 2em; font-family: fantasy;">GYM</h1>
                             </div>
@@ -119,7 +119,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
                         <a href="<?= base_url('kategori/Voly') ?>">
-                            <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; justify-content: space-evenly;">
+                            <div class="properties__card mt-2 d-flex align-items-center" style="box-shadow: 3px 3px 10px 0px gray; border-radius: 10px 10px 10px 10px; height: 100%; justify-content: space-evenly;">
                                 <img src="<?= base_url() ?>/asset/img/voly.png" style=" width: 61%; max-width: 70%; min-width: 40%; margin-left: -20px;" alt="">
                                 <h1 class="mt-3" style="font-weight: 30px !important; font-size: 2em; font-family: fantasy;">Voly</h1>
                             </div>

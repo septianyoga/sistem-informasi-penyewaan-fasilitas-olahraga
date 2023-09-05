@@ -134,7 +134,7 @@
     </div>
 
     <!--? Want To work 02-->
-    <section class="">
+    <!-- <section class="">
         <div class="container">
             <div class="wants-wrapper w-padding2">
                 <div class="row justify-content-between">
@@ -157,6 +157,6 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
 </main>

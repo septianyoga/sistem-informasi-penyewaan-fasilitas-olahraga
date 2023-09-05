@@ -15,9 +15,9 @@
                             <div class="auth-logo">
                                 <img src="<?= base_url() ?>/asset/img/logo-warna.png" class="img-fluid rounded-normal light-logo" alt="logo">
                             </div>
-                            <h3 class="mb-3 font-weight-bold text-center hijau">Sign Up</h3>
+                            <h3 class="mb-3 font-weight-bold text-center hijau">Registrasi</h3>
                             <div class="mb-5 mt-4">
-                                <p class="line-around text-secondary mb-0 hijau"><span class="line-around-1">register your account to continue</span></p>
+                                <p class="line-around text-secondary mb-0 hijau"><span class="line-around-1">Daftarkan akun anda untuk melanjutkannya</span></p>
                             </div>
                             <?php
                             $errors = session()->getFlashdata('errors');
@@ -35,37 +35,37 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label class="text-secondary hijau">Nama</label>
-                                        <input class="form-control" name="nama" type="text" placeholder="Enter Nama">
+                                        <input class="form-control" name="nama" type="text" placeholder="Masukan Nama">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label class="text-secondary hijau">Username</label>
-                                        <input class="form-control" name="username" type="text" placeholder="Enter Username">
+                                        <input class="form-control" name="username" type="text" placeholder="Masukan Username">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label class="text-secondary hijau">Email Active</label>
-                                        <input class="form-control" name="email" type="email" placeholder="Enter Email">
+                                        <input class="form-control" name="email" type="email" placeholder="Masukan Email">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 mt-2">
                                     <div class="form-group">
                                         <label class="text-secondary hijau">Password</label>
-                                        <input class="form-control" name="password" type="password" placeholder="Enter Password">
+                                        <input class="form-control" name="password" type="password" placeholder="Masukan Password">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 mt-2">
                                     <div class="form-group">
-                                        <label class="text-secondary hijau">Password Repeat</label>
-                                        <input class="form-control" name="password_repeat" type="password" placeholder="Enter Password Repeat">
+                                        <label class="text-secondary hijau">Password Konfirmasi</label>
+                                        <input class="form-control" name="password_repeat" type="password" placeholder="Masukan Password Repeat">
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block mt-2">Create Account</button>
+                            <button type="submit" class="btn btn-primary btn-block mt-2">Buat Akun</button>
                             <div class="col-lg-12 mt-3">
-                                <p class="mb-0 text-center">Do you have an account? <a href="<?= base_url('login') ?>" class="hijau">Sign In</a></p>
+                                <p class="mb-0 text-center">Sudah mempunyai akun? <a href="<?= base_url('login') ?>" class="hijau">Login Sekarang!</a></p>
                             </div>
                             <?= form_close(); ?>
                         </div>
