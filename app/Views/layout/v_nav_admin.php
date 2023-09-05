@@ -68,25 +68,14 @@
                         <span class="text-uppercase small font-weight-bold">Other</span>
                     </li>
                     <li class="sidebar-layout">
+                        <a href="<?= base_url('/') ?>" class="svg-icon">
+                            <i class="bi bi-house"></i><span class="ml-2">Halaman Utama</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-layout">
                         <a href="<?= base_url('logout') ?>" class="svg-icon">
                             <i class="bi bi-box-arrow-left"></i><span class="ml-2">Logout</span>
                         </a>
-                        <!-- <a href="#app2" class="collapsed svg-icon" data-toggle="collapse" aria-expanded="false">
-                            <i class="bi bi-people"></i>
-                            <span class="ml-2">UI Elements</span>
-                            <i class="bi bi-chevron-right svg-icon iq-arrow-right arrow-active"></i>
-                        </a>
-                        <ul id="app2" class="submenu collapse" data-parent="#iq-sidebar-toggle">
-                            <li class=" sidebar-layout">
-                                <a href="../backend/ui-avatars.html" class="svg-icon">
-                                    <i class="">
-                                        <svg class="svg-icon" id="iq-ui-1-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" style="stroke-dasharray: 90, 110; stroke-dashoffset: 0;"></path>
-                                        </svg>
-                                    </i><span class="">Avatars</span>
-                                </a>
-                            </li>
-                        </ul> -->
                     </li>
                 </ul>
             </nav>

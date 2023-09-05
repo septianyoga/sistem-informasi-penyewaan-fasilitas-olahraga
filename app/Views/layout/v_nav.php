@@ -28,9 +28,11 @@
                                 <li class="<?= ($title == 'About') ? 'active' : '' ?>"><a href="<?= base_url('about') ?>">About</a></li>
                                 <?php if (session()->get('log')) { ?>
                                     <li class="<?= ($title == 'Pesanan' || $title == 'Belum Dibayar' || $title == 'Menunggu Verifikasi') ? 'active' : '' ?>"><a href="<?= base_url('pesanan') ?>">Pesanan</a></li>
+                                    <li class="" id="login"><a href="<?= ($penyewa != null) ? base_url('owner') : base_url('daftar') ?>"><i class="bi bi-node-plus"></i> <?= ($penyewa != null) ? 'Dashboard Owner' : 'Daftar Fasilitas' ?></a></li>
+                                    <li class="" id="login"><a href="<?= base_url('logout') ?>"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
                                 <?php } else { ?>
                                     <div id="login">
-                                        <li><a href="<?= base_url('login') ?>" class="mr-40 login"><i class="ti-user"></i> Log in</a></li>
+                                        <li><a href="<?= base_url('login') ?>" class="mr-40 login"><i class="ti-user"></i> Masuk</a></li>
                                         <li><a href="<?= base_url('register') ?>" class="mr-40 login"><i class="ti-pencil"></i> Daftar</a></li>
                                     </div>
                                 <?php } ?>
@@ -40,7 +42,7 @@
                     <!-- Header-btn -->
                     <?php
                     if (session()->get('log')) { ?>
-                        <div class="header-btns d-lg-block f-right text-white">
+                        <div class="header-btns d-lg-block f-right text-white menu-dropdown">
                             <span class="profil">
                                 <button id="dropbtn" class="d-block" style="background-color: transparent; border-style: none;" onclick="myFunction()">
                                     <img src="<?= base_url() ?>/asset/img/user.png" width="30" alt=""> <span><?= (session()->get('nama')) ?></span>
@@ -58,7 +60,7 @@
                         <!-- <a href="<?= base_url('logout') ?>" class="mr-40 login"><i class="ti-user"></i> Log out</a> -->
                     <?php } else { ?>
                         <div class="header-btns d-none d-lg-block f-right">
-                            <a href="<?= base_url('login') ?>" class="mr-40 login"><i class="ti-user"></i> Log in</a>
+                            <a href="<?= base_url('login') ?>" class="mr-40 login"><i class="ti-user"></i> Masuk</a>
                             <a href="<?= base_url('register') ?>" class="btn" style="background-color: unset; border: 1px solid #fff !important;">Daftar</a>
                         </div>
                     <?php } ?>

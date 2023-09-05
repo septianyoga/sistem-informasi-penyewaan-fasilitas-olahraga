@@ -46,7 +46,7 @@ class Auth extends BaseController
             ],
             'password' => [
                 'label' => 'Password',
-                'rules' => 'required|min_length[6]',
+                'rules' => 'required|min_length[6]|alpha_numeric',
                 'errors' => [
                     'required' => '{field} wajib diisi.',
                     'min_length' => '{field} minimal 6 huruf / angka.',
@@ -61,6 +61,7 @@ class Auth extends BaseController
 
             // cek
             $cek = $this->ModelAuth->cekDataPenyewa($username_email, $password);
+
             if ($cek) {
                 if ($cek['status_aktif'] == 'Non Aktif') {
                     session()->setFlashdata('pesan', 'Akun sudah tidak aktif!');

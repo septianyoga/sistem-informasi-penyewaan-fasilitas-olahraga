@@ -32,6 +32,8 @@
                                 <?= form_open_multipart(base_url('upload_pembayaran')) ?>
                                 <div class="row bg-light">
                                     <div class="col-12 col-md-12 col-lg-12">
+                                        <p>Atas Nama : <?= $owner['nama_penyewa'] ?></p>
+                                        <p>Pesanan : <?= $owner['nama_fasilitas'] ?></p>
                                         <?php if ($owner['no_rek'] != null || $owner['no_dana_shopee'] != null) { ?>
                                             <p>No Rekening <?= $owner['jenis_rek'] ?> : <?= $owner['no_rek'] ?></p>
                                             <p>No Dana / Shopee : <?= $owner['no_dana_shopee'] ?></p>
@@ -43,7 +45,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group mb-3">
                                                         <input type="hidden" name="id_pesanan" value="<?= $data['id_pesanan'] ?>">
-                                                        <input class="form-control valid" name="bukti_pembayaran" type="file" placeholder="Masukan bukti pembayaran" required>
+                                                        <input class="form-control valid" name="bukti_pembayaran" type="file" placeholder="Masukan bukti pembayaran" accept="image/png, image/jpg, image/jpeg" required>
                                                     </div>
                                                 </div>
                                             </aside>

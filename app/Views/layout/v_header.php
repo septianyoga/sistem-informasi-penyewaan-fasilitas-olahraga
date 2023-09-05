@@ -109,6 +109,10 @@
                 /* background-color: red; */
                 display: none !important;
             }
+
+            .menu-dropdown {
+                display: none;
+            }
         }
 
         body {
